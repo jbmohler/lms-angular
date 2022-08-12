@@ -1,0 +1,11 @@
+<div class="tab_div" id="the_tab_div" style="height: 40px">
+	<a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
+	<a href="/contacts" [className]="contact_active ? 'active' : ''">Contacts</a>
+	<a href="/finances" [className]="finance_active ? 'active' : ''">Finances</a>
+	<a href="/reports" [className]="reports_active ? 'active' : ''">Reports</a>
+	<a href="/lms/user-profile" [className]="profile_active ? 'active' : ''">Profile</a>
+	<a href="/lms/technical" [className]="technical_active ? 'active' : ''">Technical</a>
+	<a href="javascript:void(0);" class="icon" onclick="myFunction()">
+		<i class="fa fa-bars"></i>
+	</a>
+</div>
