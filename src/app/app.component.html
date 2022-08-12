@@ -1,25 +1,25 @@
 <app-banner></app-banner>
 <app-tabnav></app-tabnav>
 <div>
-	<div
-	  id="authentication"
-	  *ngIf="loggedIn(); then thenBlock; else elseBlock"
-	></div>
-	<div id="authentication2">
-	  <!-- TODO -- this is pretty https://www.w3schools.com/howto/howto_css_login_form.asp -->
-	  <ng-template #thenBlock>
-		<router-outlet></router-outlet>
-	  </ng-template>
-	  <ng-template #elseBlock>
-		<p>auth-login</p>
-		<form #userLogin="ngForm" (ngSubmit)="onClickSubmit(userLogin.value)">
-		  <label for="username">Username:&nbsp;&nbsp;</label>
-		  <input type="input" name="username" ngModel /><br />
-		  <label for="password">Password:&nbsp;&nbsp;</label>
-		  <input type="password" name="password" ngModel /><br />
+  <div
+    id="authentication"
+    *ngIf="loggedIn(); then thenBlock; else elseBlock"
+  ></div>
+  <div id="authentication2">
+    <!-- TODO -- this is pretty https://www.w3schools.com/howto/howto_css_login_form.asp -->
+    <ng-template #thenBlock>
+      <router-outlet></router-outlet>
+    </ng-template>
+    <ng-template #elseBlock>
+      <p>auth-login</p>
+      <form #userLogin="ngForm" (ngSubmit)="onClickSubmit(userLogin.value)">
+        <label for="username">Username:&nbsp;&nbsp;</label>
+        <input type="input" name="username" ngModel /><br />
+        <label for="password">Password:&nbsp;&nbsp;</label>
+        <input type="password" name="password" ngModel /><br />
 
-		  <input type="submit" value="Log-in" />
-		</form>
-	  </ng-template>
-	</div>
+        <input type="submit" value="Log-in" />
+      </form>
+    </ng-template>
+  </div>
 </div>

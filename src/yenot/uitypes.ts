@@ -179,7 +179,7 @@ export interface ControlInputDef {
   options?: any[];
 }
 
-let entityList = [ 'yenot_user' ];
+let entityList = ['yenot_user'];
 
 export function formControlInputs(columns: ColumnMeta[]): ControlInputDef[] {
   function gtype(cc: ColumnMeta): any {

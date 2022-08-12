@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,14 +21,10 @@ import { TechnicalComponent } from './technical/technical.component';
     FinancesComponent,
     ReportsComponent,
     ProfileComponent,
-    TechnicalComponent
+    TechnicalComponent,
   ],
-  imports: [
-    BrowserModule,
-	FormsModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, FormsModule, AppRoutingModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

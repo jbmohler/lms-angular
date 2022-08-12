@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosInstance } from 'axios';
 import FormData from 'form-data';
-import {
-  YenotClient,
-  YenotPayload,
-  ClientTable,
-} from '../yenot/apiclient';
+import { YenotClient, YenotPayload, ClientTable } from '../yenot/apiclient';
 import {
   columnsAgGrid,
   ControlInputDef,

@@ -1,55 +1,59 @@
-
 // tab navigation
 .tab_div {
-	overflow: hidden;
-	background-color: lightgray;
+  overflow: hidden;
+  background-color: lightgray;
 }
 
 .tab_div a {
-	float: left;
-	display: block;
-	color: black;
-	background-color: lightgray;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	font-size: 17px;
+  float: left;
+  display: block;
+  color: black;
+  background-color: lightgray;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
-
 .tab_div a:hover {
-	background-color: gray;
-	color: white;
+  background-color: gray;
+  color: white;
 }
 
 .tab_div a.active {
-	background-color: #04AA6D;
-	color: white;
+  background-color: #04aa6d;
+  color: white;
 }
 
 .tab_div .icon {
-	display: none;
-}
- 
-@media screen and (max-width: 600px) {
-	.tab_div a:not(.active) {display: none;}
-	.tab_div a.active {display: block;}
-	.tab_div a.icon {
-		float: right;
-		display: block;
-	}
+  display: none;
 }
 
 @media screen and (max-width: 600px) {
-	.tab_div.responsive {position: relative;}
-	.tab_div.responsive .icon {
-		position: absolute;
-		right: 0;
-		top: 0;
-	}
-	.tab_div.responsive a {
-		float: none;
-		display: block;
-		text-align: left;
-	}
+  .tab_div a:not(.active) {
+    display: none;
+  }
+  .tab_div a.active {
+    display: block;
+  }
+  .tab_div a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .tab_div.responsive {
+    position: relative;
+  }
+  .tab_div.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .tab_div.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
 }

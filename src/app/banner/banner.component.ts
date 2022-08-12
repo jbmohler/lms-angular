@@ -4,21 +4,18 @@ import { YenotApiService } from '../yenot-api.service';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.css']
+  styleUrls: ['./banner.component.css'],
 })
 export class BannerComponent implements OnInit {
+  constructor(public apiService: YenotApiService) {}
 
-  constructor(public apiService: YenotApiService) { 
-  }
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   hasPermission(activity: string): boolean {
     return !activity || this.apiService.hasPermission(activity);
   }
 
   async onUserLogout() {
-	  await this.apiService.logout();
+    await this.apiService.logout();
   }
 }

@@ -1,22 +1,32 @@
 <div class="tab_div" id="the_tab_div" style="height: 60px">
-	<a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
-	<div *ngIf="hasPermission('get_api_personas_list')">
-		<a href="/contacts" [className]="contact_active ? 'active' : ''">Contacts</a>
-	</div>
-	<div *ngIf="hasPermission('get_api_databits_list')">
-		<a href="/databits" [className]="databit_active ? 'active' : ''">Contacts</a>
-	</div>
-	<div *ngIf="hasPermission('get_api_transactions_list')">
-		<a href="/finances" [className]="finance_active ? 'active' : ''">Finances</a>
-	</div>
-	<a href="/reports" [className]="reports_active ? 'active' : ''">Reports</a>
-	<div *ngIf="profile_active">
-		<a href="/lms/user-profile" [className]="profile_active ? 'active' : ''">Profile</a>
-	</div>
-	<div *ngIf="technical_active">
-		<a href="/lms/technical" [className]="technical_active ? 'active' : ''">Technical</a>
-	</div>
-	<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-		<i class="fa fa-bars"></i>
-	</a>
+  <a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
+  <div *ngIf="hasPermission('get_api_personas_list')">
+    <a href="/contacts" [className]="contact_active ? 'active' : ''"
+      >Contacts</a
+    >
+  </div>
+  <div *ngIf="hasPermission('get_api_databits_list')">
+    <a href="/databits" [className]="databit_active ? 'active' : ''"
+      >Contacts</a
+    >
+  </div>
+  <div *ngIf="hasPermission('get_api_transactions_list')">
+    <a href="/finances" [className]="finance_active ? 'active' : ''"
+      >Finances</a
+    >
+  </div>
+  <a href="/reports" [className]="reports_active ? 'active' : ''">Reports</a>
+  <div *ngIf="profile_active">
+    <a href="/lms/user-profile" [className]="profile_active ? 'active' : ''"
+      >Profile</a
+    >
+  </div>
+  <div *ngIf="technical_active">
+    <a href="/lms/technical" [className]="technical_active ? 'active' : ''"
+      >Technical</a
+    >
+  </div>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>

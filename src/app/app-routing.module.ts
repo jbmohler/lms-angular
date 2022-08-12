@@ -7,18 +7,17 @@ import { ProfileComponent } from './profile/profile.component';
 import { TechnicalComponent } from './technical/technical.component';
 
 const routes: Routes = [
-	 { path: 'contact/:id', component: ContactsComponent },
-	 { path: 'contacts', component: ContactsComponent },
-	 { path: 'transaction/:id', component: FinancesComponent },
-	 { path: 'finances', component: FinancesComponent },
-	 { path: 'reports', component: ReportsComponent },
-	 { path: 'lms/user-profile', component: ProfileComponent },
-	 { path: 'lms/technical', component: TechnicalComponent }
-
+  { path: 'contact/:id', component: ContactsComponent },
+  { path: 'contacts', component: ContactsComponent },
+  { path: 'transaction/:id', component: FinancesComponent },
+  { path: 'finances', component: FinancesComponent },
+  { path: 'reports', component: ReportsComponent },
+  { path: 'lms/user-profile', component: ProfileComponent },
+  { path: 'lms/technical', component: TechnicalComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
