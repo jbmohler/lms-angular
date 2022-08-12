@@ -179,20 +179,7 @@ export interface ControlInputDef {
   options?: any[];
 }
 
-let entityList = [
-  'yenot_customer',
-  'yenot_employee',
-  'yenot_estimate',
-  'yenot_item',
-  'yenot_jobtransfer',
-  'yenot_job',
-  'yenot_opportunity',
-  'yenot_purchaseorder',
-  'yenot_salesperson',
-  'yenot_paycheck',
-  'yenot_user',
-  'yenot_vendor',
-];
+let entityList = [ 'yenot_user' ];
 
 export function formControlInputs(columns: ColumnMeta[]): ControlInputDef[] {
   function gtype(cc: ColumnMeta): any {
@@ -204,24 +191,12 @@ export function formControlInputs(columns: ColumnMeta[]): ControlInputDef[] {
       if (tt == 'postal_address') return { type: 'postal_address' };
       if (tt == 'date') return { type: 'date' };
       if (tt == 'currency_usd') return { type: 'number' };
-      if (tt == 'yenot_leadsource')
-        return {
-          type: 'dropdown',
-          options: [{ key: 'Google', value: 'Google' }],
-        };
       //if (tt == 'stringlist') return { formatter: listconcat };
       if (entityList.includes(tt)) {
         let a = tt.match(/^(yenot|yenot)_([a-z]+)/);
         return {
           type: 'entity-reference',
           params: { entity: a[2], plural: toPlural(a[2]) },
-        };
-      }
-      if (tt.match(/^yenot_([a-z]+)\.surrogate/)) {
-        let a = tt.match(/^yenot_([a-z]+)\.surrogate/);
-        return {
-          type: 'entity-lookup',
-          params: { entity: a[1], plural: toPlural(a[1]) },
         };
       }
       if (tt.match(/^yenot_([a-z]+)\.surrogate/)) {

@@ -206,9 +206,6 @@ export class YenotClient {
   authRefresh: ManagedTimer;
   sessionMarginMinutes: number = 20;
   activityMap: Map<string, number> | null = null;
-  _selfStatusSummary: YenotPayload | null = null;
-  statusSummaryRefresh: ManagedTimer;
-  _corpBranding: YenotPayload | null = null;
 
   constructor(instance: AxiosInstance) {
     this.instance = instance;
@@ -218,12 +215,6 @@ export class YenotClient {
         this.sessionRefresh();
       },
       { minutes: 10 }
-    );
-    this.statusSummaryRefresh = new ManagedTimer(
-      () => {
-        this.refreshStatusSummary(true);
-      },
-      { minutes: 15 }
     );
 
     this.root = '/';
@@ -282,40 +273,6 @@ export class YenotClient {
     });
   }
 
-  async refreshStatusSummary(force: boolean = false): Promise<any> {
-    if (!this.authdata) {
-      return null;
-    }
-
-    if (this._selfStatusSummary === null || force) {
-      try {
-        console.log(`Refreshing self status summary`);
-
-        this._selfStatusSummary = await this.get(
-          'api/employee-self/status-summary'
-        );
-
-        // TODO -- notify an observable so that the UI can update cleverly
-        this.statusSummaryRefresh.start();
-      } catch (e: any) {
-        if (e.response!.status === 403) {
-          return null;
-        }
-      }
-    }
-
-    return this._selfStatusSummary;
-  }
-
-  async corpBranding(): Promise<any> {
-    // TODO:  refresh after some time
-    if (this._corpBranding === null) {
-      this._corpBranding = await this.get('api/public/branding');
-    }
-
-    return this._corpBranding.mainTable().singleton();
-  }
-
   hasPermission(activity: string): boolean {
     if (this.activityMap === null) {
       return false;
@@ -368,7 +325,6 @@ export class YenotClient {
     );
 
     this.applyAuth(data);
-    this._selfStatusSummary = null;
   }
 
   applyAuth(data: any) {
@@ -435,7 +391,6 @@ export class YenotClient {
     }
 
     this.authRefresh.clear();
-    this.statusSummaryRefresh.clear();
 
     this.authdata = null;
   }
