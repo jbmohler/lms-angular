@@ -1,14 +1,14 @@
 // tab navigation
 .tab_div {
-  overflow: hidden;
-  background-color: lightgray;
+  display: block;
+  height: 2em;
 }
 
 .tab_div a {
   float: left;
   display: block;
-  color: black;
-  background-color: lightgray;
+  color: white;
+  background-color: #333;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;

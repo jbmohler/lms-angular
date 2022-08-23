@@ -15,6 +15,10 @@ export class BannerComponent implements OnInit {
     return !activity || this.apiService.hasPermission(activity);
   }
 
+  isAuthenticated(): boolean {
+    return this.apiService.authdata !== null;
+  }
+
   async onUserLogout() {
     await this.apiService.logout();
   }

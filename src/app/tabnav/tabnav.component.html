@@ -1,5 +1,11 @@
-<div class="tab_div" id="the_tab_div" style="height: 60px">
-  <a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
+<div
+  class="tab_div"
+  id="the_tab_div"
+  style="height: 3em; background-color: #333"
+>
+  <div>
+    <a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
+  </div>
   <div *ngIf="hasPermission('get_api_personas_list')">
     <a href="/contacts" [className]="contact_active ? 'active' : ''"
       >Contacts</a
