@@ -6,22 +6,24 @@
   <div>
     <a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
   </div>
-  <div *ngIf="hasPermission('get_api_personas_list')">
+  <div *ngIf="contact_visible">
     <a href="/contacts" [className]="contact_active ? 'active' : ''"
       >Contacts</a
     >
   </div>
-  <div *ngIf="hasPermission('get_api_databits_list')">
+  <div *ngIf="databit_visible">
     <a href="/databits" [className]="databit_active ? 'active' : ''"
       >Contacts</a
     >
   </div>
-  <div *ngIf="hasPermission('get_api_transactions_list')">
+  <div *ngIf="finance_visible">
     <a href="/finances" [className]="finance_active ? 'active' : ''"
       >Finances</a
     >
   </div>
-  <a href="/reports" [className]="reports_active ? 'active' : ''">Reports</a>
+  <div *ngIf="reports_visible">
+    <a href="/reports" [className]="reports_active ? 'active' : ''">Reports</a>
+  </div>
   <div *ngIf="profile_active">
     <a href="/lms/user-profile" [className]="profile_active ? 'active' : ''"
       >Profile</a

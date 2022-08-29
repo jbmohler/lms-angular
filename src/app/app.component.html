@@ -1,24 +1,36 @@
 <app-banner></app-banner>
-<app-tabnav></app-tabnav>
 <div>
   <div
     id="authentication"
-    *ngIf="loggedIn(); then thenBlock; else elseBlock"
+    *ngIf="authenticated; then thenBlock; else elseBlock"
   ></div>
   <div id="authentication2">
     <!-- TODO -- this is pretty https://www.w3schools.com/howto/howto_css_login_form.asp -->
     <ng-template #thenBlock>
+      <app-tabnav></app-tabnav>
       <router-outlet></router-outlet>
     </ng-template>
     <ng-template #elseBlock>
-      <p>auth-login</p>
-      <form #userLogin="ngForm" (ngSubmit)="onClickSubmit(userLogin.value)">
-        <label for="username">Username:&nbsp;&nbsp;</label>
-        <input type="input" name="username" ngModel /><br />
-        <label for="password">Password:&nbsp;&nbsp;</label>
-        <input type="password" name="password" ngModel /><br />
-
-        <input type="submit" value="Log-in" />
+      <p>Login</p>
+      <form
+        class="loginForm"
+        #userLogin="ngForm"
+        (ngSubmit)="onClickSubmit(userLogin.value)"
+      >
+        <div class="loginRow">
+          <label for="username">Username:&nbsp;&nbsp;</label>
+          <input type="input" name="username" ngModel /><br />
+        </div>
+        <div class="loginRow">
+          <label for="password">Password:&nbsp;&nbsp;</label>
+          <input type="password" name="password" ngModel /><br />
+        </div>
+        <div class="loginRow error" *ngIf="loginError">
+          {{ loginError }}
+        </div>
+        <div class="loginRow">
+          <input type="submit" value="Log-in" />
+        </div>
       </form>
     </ng-template>
   </div>

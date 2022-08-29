@@ -1,3 +1,16 @@
 app-tabnav {
   width: 100%;
 }
+
+.loginRow {
+  padding: 0.4em;
+}
+
+.loginRow label {
+  display: inline-block;
+  width: 7em;
+}
+
+.loginForm .error {
+  color: red;
+}

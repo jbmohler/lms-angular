@@ -3,11 +3,13 @@
   <div class="banner_profile" *ngIf="isAuthenticated()">
     <img src="/api/user/me/avatar.png" width="32" height="32" />
     <div class="dropdown-content">
-      <a href="/lms/user-profile" id="rtx_user_profile">Name</a>
+      <a routerLink="/lms/user-profile" id="rtx_user_profile"
+        >Profile: {{ displayName }}</a
+      >
       <div *ngIf="hasPermission('put_api_role_record')">
-        <a href="/lms/technical" id="rtx_source">Technical</a>
+        <a routerLink="/lms/technical" id="rtx_source">Technical</a>
       </div>
-      <a href="#" id="rtx_logout" (click)="onUserLogout()">Logout</a>
+      <a id="rtx_logout" (click)="onUserLogout()">Logout</a>
     </div>
   </div>
   <div class="banner_roscoe" *ngIf="isAuthenticated()">

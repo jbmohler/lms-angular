@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 import axios, { AxiosInstance } from 'axios';
 import FormData from 'form-data';
 import { YenotClient, YenotPayload, ClientTable } from '../yenot/apiclient';
@@ -27,6 +28,8 @@ export { YenotPayload, ClientTable };
   providedIn: 'root',
 })
 export class YenotApiService extends YenotClient {
+  public authUpdate = new Subject();
+
   constructor() {
     super(browser_axios_instance());
 
@@ -42,6 +45,11 @@ export class YenotApiService extends YenotClient {
   }
 
   override addFormHeaders(headers: any, formData: FormData) {}
+
+  override authChange() {
+    // don't have a specific value to push out other than the notification
+    this.authUpdate.next(null);
+  }
 
   // TODO push out notifications about log in/out from
   // https://angular.io/guide/component-interaction#!#bidirectional-service

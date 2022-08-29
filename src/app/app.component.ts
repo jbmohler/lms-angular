@@ -11,42 +11,38 @@ export class AppComponent implements OnInit {
   title = 'lms';
 
   authenticated: boolean;
-  displayName: string;
+  loginError: string | null = null;
 
   constructor(public apiService: YenotApiService) {
     this.authenticated = false;
-    this.displayName = 'Pending';
+
+    this.apiService.authUpdate.subscribe((value) => {
+      this.updateAuthStatus(value);
+    });
 
     this.checkAuthenticated();
   }
 
-  ngOnInit(): void {
-    this.display_username();
+  ngOnInit(): void {}
+
+  async updateAuthStatus(value: any) {
+    this.authenticated = await this.apiService.isAuthenticated(false);
   }
 
-  async checkAuthenticated(): Promise<boolean> {
+  async checkAuthenticated() {
     this.authenticated = await this.apiService.isAuthenticated(true);
-    return this.loggedIn();
   }
 
-  async display_username() {
-    const auth = this.apiService.authdata;
+  async onClickSubmit(data: any) {
+    try {
+      await this.apiService.authenticate(data.username, data.password);
+    } catch (e: any) {
+      this.loginError = e.message;
 
-    this.displayName = auth['username'];
-  }
+      return;
+    }
 
-  loggedIn(): boolean {
-    return this.authenticated;
-  }
-
-  logout() {
-    this.apiService.logout();
-    this.authenticated = false;
-  }
-
-  onClickSubmit(data: any) {
-    this.apiService.authenticate(data.username, data.password).then((value) => {
-      this.authenticated = true;
-    });
+    this.loginError = null;
+    this.authenticated = true;
   }
 }

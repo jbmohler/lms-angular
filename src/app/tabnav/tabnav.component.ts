@@ -9,10 +9,15 @@ import { YenotApiService } from '../yenot-api.service';
 })
 export class TabnavComponent implements OnInit {
   root_active: boolean = false;
+  root_visible: boolean = false;
   contact_active: boolean = false;
+  contact_visible: boolean = false;
   databit_active: boolean = false;
+  databit_visible: boolean = false;
   finance_active: boolean = false;
+  finance_visible: boolean = false;
   reports_active: boolean = false;
+  reports_visible: boolean = false;
   profile_active: boolean = false;
   technical_active: boolean = false;
 
@@ -21,6 +26,18 @@ export class TabnavComponent implements OnInit {
     private router: Router,
     public apiService: YenotApiService
   ) {
+    this.router.events.subscribe((event: any) => {
+      this.routeUpdateFlags(event);
+    });
+    this.apiService.authUpdate.subscribe((value) => {
+      this.authUpdateStatus();
+    });
+
+    this.routeUpdateFlags(null);
+    this.authUpdateStatus();
+  }
+
+  routeUpdateFlags(event: any) {
     this.contact_active = this.matchesPrefix(['/contact', '/contacts']);
     this.databit_active = this.matchesPrefix(['/databit', '/databits']);
     this.finance_active = this.matchesPrefix(['/finance', '/transaction']);
@@ -41,6 +58,14 @@ export class TabnavComponent implements OnInit {
 
   hasPermission(activity: string): boolean {
     return !activity || this.apiService.hasPermission(activity);
+  }
+
+  authUpdateStatus() {
+    this.root_visible = true; // TODO what is this?
+    this.contact_visible = this.hasPermission('get_api_personas_list');
+    this.databit_visible = this.hasPermission('get_api_databits_list');
+    this.finance_visible = this.hasPermission('get_api_transactions_list');
+    this.reports_visible = true; // TODO filter by something
   }
 
   ngOnInit(): void {}

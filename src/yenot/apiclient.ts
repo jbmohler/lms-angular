@@ -32,11 +32,12 @@ export class ClientTable<RowType> {
   columns: ColumnMeta[];
 
   constructor(rows: RowType[], columns: ColumnMeta[]) {
-    this.rows = rows;
     this.columns = columns;
 
-    this.rows.forEach((r) => {
-      (r as any).$table = this;
+    this.rows = rows.map((r) => {
+      let copy = { ...r };
+      (copy as any).$table = this;
+      return copy;
     });
   }
 
@@ -277,7 +278,7 @@ export class YenotClient {
     if (this.activityMap === null) {
       return false;
     }
-    //console.log(`Getting perms for ${activity}`);
+    console.log(`Getting perms for ${activity}`);
     return this.activityMap.get(activity) !== undefined;
   }
 
@@ -288,13 +289,15 @@ export class YenotClient {
 
         this.applyAuth(data);
       } catch (e: any) {
-        if (e.response!.status === 403) {
+        if (e.response && e.response.status === 403) {
           // TODO fix race condition -- how do I know that another tab didn't
           // log in while I checked in this tab?!
           if (typeof localStorage !== 'undefined') {
             localStorage.removeItem('auth-data-cache');
           }
           return false;
+        } else {
+          throw e;
         }
       }
 
@@ -310,6 +313,8 @@ export class YenotClient {
     headers['Content-Length'] = formData.getLengthSync();
   }
 
+  authChange() {}
+
   async authenticate(username: string, password: string) {
     const formData = new FormData();
     formData.append('username', username);
@@ -318,17 +323,24 @@ export class YenotClient {
     let headers: any = {};
     this.addFormHeaders(headers, formData);
 
-    const { data } = await this.instance.post(
-      this.url('api/session'),
-      formData,
-      { headers: headers }
-    );
+    let authdata: any = null;
+    try {
+      const { data } = await this.instance.post(
+        this.url('api/session'),
+        formData,
+        { headers: headers }
+      );
+      authdata = data;
+    } catch (e: any) {
+      throw this._convertedOBError(e);
+    }
 
-    this.applyAuth(data);
+    this.applyAuth(authdata);
   }
 
   applyAuth(data: any) {
     this.authdata = data;
+    this.buildActivityMap();
 
     if (typeof localStorage !== 'undefined') {
       // Save this data to window.localStorage to have immediate access to
@@ -336,6 +348,7 @@ export class YenotClient {
       localStorage.setItem('auth-data-cache', JSON.stringify(data));
     }
 
+    this.authChange();
     this.authRefresh.start();
   }
 
@@ -377,7 +390,7 @@ export class YenotClient {
     console.log(`Logging out ${this.authdata['username']}`);
 
     try {
-      const { data } = await this.instance.put(this.url('api/session/logout'));
+      await this.instance.put(this.url('api/session/logout'));
     } catch (e: any) {
       if (e.response!.status === 403) {
         console.log(
@@ -393,6 +406,7 @@ export class YenotClient {
     this.authRefresh.clear();
 
     this.authdata = null;
+    this.authChange();
   }
 
   _formdataParams(formData: FormData, body: any, tables: any) {

@@ -7,9 +7,23 @@ import { YenotApiService } from '../yenot-api.service';
   styleUrls: ['./banner.component.css'],
 })
 export class BannerComponent implements OnInit {
-  constructor(public apiService: YenotApiService) {}
+  displayName: string;
 
-  ngOnInit(): void {}
+  constructor(public apiService: YenotApiService) {
+    this.displayName = 'Pending';
+  }
+
+  ngOnInit(): void {
+    this.display_username();
+  }
+
+  async display_username() {
+    const auth = this.apiService.authdata;
+
+    if (auth) {
+      this.displayName = auth['username'];
+    }
+  }
 
   hasPermission(activity: string): boolean {
     return !activity || this.apiService.hasPermission(activity);
