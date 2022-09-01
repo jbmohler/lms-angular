@@ -1,5 +1,11 @@
 <div class="multipane_body">
-  <div class="search_results2_narrow" id="search_wrapper">
+  <div
+    [ngClass]="{
+      search_results2_narrow: !previewPersonaId,
+      search_results2_wide: previewPersonaId
+    }"
+    id="search_wrapper"
+  >
     <form (ngSubmit)="onSearch()">
       <table class="search">
         <tr>
@@ -14,23 +20,56 @@
 
     <div class="search_results" id="result-warning"></div>
 
-    <div class="search_results" id="contact_data" style="height: 150px">
+    <div id="contact_data" style="height: 400px">
       <ag-grid-angular
         style="height: 100%"
         class="ag-theme-alpine content-stack"
         [rowData]="rowData"
         [columnDefs]="columnDefs"
         [defaultColDef]="defaultColDef"
+        (rowClicked)="onRowClick($event)"
       >
       </ag-grid-angular>
     </div>
   </div>
 
-  <div class="row_detail_suppressed" id="preview_detail">
+  <div
+    [ngClass]="{
+      row_detail_suppressed: !previewPersonaId,
+      row_detail_wide: previewPersonaId
+    }"
+    id="preview_detail"
+  >
     <a href="#" class="search_back" id="search_back" onClick="back_to_search()"
       >&lt;&lt; Back to Search</a
     >
 
-    <div id="preview_content"></div>
+    <div id="preview_content" *ngIf="previewPersonaId">
+      <b>Name: </b>{{ preview?.persona.entity_name }}
+
+      {{ preview?.persona.memo }}
+
+      <div class="preview_bit" *ngFor="let bit of preview.bits.rows">
+        {{ bit.name }}<br />
+        <div [ngSwitch]="bit.bit_type">
+          <span *ngSwitchCase="'email_addresses'">
+            {{ bit.bit_data.email }}
+          </span>
+          <span *ngSwitchCase="'street_addresses'">
+            {{ bit.bit_data.address1 }}
+          </span>
+          <span *ngSwitchCase="'phone_numbers'">
+            {{ bit.bit_data.number }}
+          </span>
+          <span *ngSwitchCase="'urls'">
+            {{ bit.bit_data.url }}
+            <span *ngIf="bit.bit_data.username || bit.bit_data.password">
+              {{ bit.bit_data.username }}<br />
+              <a (click)="onPasswordCopy(bit)">Copy Password</a>
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
