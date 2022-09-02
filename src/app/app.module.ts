@@ -13,6 +13,7 @@ import { FinancesComponent } from './finances/finances.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TechnicalComponent } from './technical/technical.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { TechnicalComponent } from './technical/technical.component';
     BrowserAnimationsModule,
     AgGridModule,
     AppRoutingModule,
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -50,24 +50,28 @@
       {{ preview?.persona.memo }}
 
       <div class="preview_bit" *ngFor="let bit of preview.bits.rows">
-        {{ bit.name }}<br />
-        <div [ngSwitch]="bit.bit_type">
-          <span *ngSwitchCase="'email_addresses'">
-            {{ bit.bit_data.email }}
-          </span>
-          <span *ngSwitchCase="'street_addresses'">
-            {{ bit.bit_data.address1 }}
-          </span>
-          <span *ngSwitchCase="'phone_numbers'">
-            {{ bit.bit_data.number }}
-          </span>
-          <span *ngSwitchCase="'urls'">
-            {{ bit.bit_data.url }}
-            <span *ngIf="bit.bit_data.username || bit.bit_data.password">
-              {{ bit.bit_data.username }}<br />
-              <a (click)="onPasswordCopy(bit)">Copy Password</a>
+        <fa-icon [icon]="faPenToSquare"></fa-icon>
+        <fa-icon [icon]="faTrashCan" (click)="onDeleteBit(bit)"></fa-icon>
+        <div class="bit_data">
+          {{ bit.name }}<br />
+          <div [ngSwitch]="bit.bit_type">
+            <span *ngSwitchCase="'email_addresses'">
+              {{ bit.bit_data.email }}
             </span>
-          </span>
+            <span *ngSwitchCase="'street_addresses'">
+              {{ bit.bit_data.address1 }}
+            </span>
+            <span *ngSwitchCase="'phone_numbers'">
+              {{ bit.bit_data.number }}
+            </span>
+            <span *ngSwitchCase="'urls'">
+              {{ bit.bit_data.url }}
+              <span *ngIf="bit.bit_data.username || bit.bit_data.password">
+                {{ bit.bit_data.username }}<br />
+                <a (click)="onPasswordCopy(bit)">Copy Password</a>
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </div>

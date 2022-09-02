@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ColDef } from 'ag-grid-community';
+import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import {
   YenotApiService,
   YenotPayload,
@@ -15,6 +16,8 @@ import {
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
+  faPenToSquare = faPenToSquare;
+  faTrashCan = faTrashCan;
   fragment: string = '';
 
   preview: any = null;
@@ -85,5 +88,16 @@ export class ContactsComponent implements OnInit {
 
   onPasswordCopy(bit: any) {
     this.copyString(bit.bit_data.password);
+  }
+
+  async onDeleteBit(bit: any) {
+    if (
+      window.confirm(`Are you sure you want to delete this ${bit.bit_type}?`)
+    ) {
+      let persona = this.preview.persona;
+      await this.apiService.delete(`api/persona/${persona.id}/bit/${bit.id}`);
+
+      this.reloadPreload(persona.id);
+    }
   }
 }
