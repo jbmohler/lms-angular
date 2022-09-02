@@ -6,7 +6,7 @@
       <a routerLink="/lms/user-profile" id="rtx_user_profile"
         >Profile: {{ displayName }}</a
       >
-      <div *ngIf="hasPermission('put_api_role_record')">
+      <div *ngIf="hasPermTechnical">
         <a routerLink="/lms/technical" id="rtx_source">Technical</a>
       </div>
       <a id="rtx_logout" (click)="onUserLogout()">Logout</a>

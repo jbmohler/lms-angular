@@ -7,26 +7,31 @@ import { YenotApiService } from '../yenot-api.service';
   styleUrls: ['./banner.component.css'],
 })
 export class BannerComponent implements OnInit {
-  displayName: string;
+  displayName: string | null = null;
+  hasPermTechnical: boolean = false;
 
   constructor(public apiService: YenotApiService) {
-    this.displayName = 'Pending';
+    this.apiService.authUpdate.subscribe((value) => {
+      this.authUpdateStatus();
+    });
   }
 
   ngOnInit(): void {
-    this.display_username();
+    this.authUpdateStatus();
   }
 
-  async display_username() {
+  authUpdateStatus() {
     const auth = this.apiService.authdata;
 
     if (auth) {
       this.displayName = auth['username'];
+      this.hasPermTechnical = this.apiService.hasPermission(
+        'put_api_role_record'
+      );
+    } else {
+      this.displayName = null;
+      this.hasPermTechnical = false;
     }
-  }
-
-  hasPermission(activity: string): boolean {
-    return !activity || this.apiService.hasPermission(activity);
   }
 
   isAuthenticated(): boolean {
