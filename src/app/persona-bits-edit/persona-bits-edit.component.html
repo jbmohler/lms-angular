@@ -1,0 +1,59 @@
+<div class="dialog">
+  <h1>Edit Bit</h1>
+
+  <form class="form" [formGroup]="bitForm">
+    <div>
+      <label class="label">Name: </label><input formControlName="name" />
+    </div>
+    <div>
+      <div class="label">&nbsp;</div>
+      <input type="checkbox" formControlName="is_primary" /><label
+        >Primary
+      </label>
+    </div>
+
+    <ng-container [ngSwitch]="bit_type">
+      <ng-container *ngSwitchCase="'urls'">
+        <div>
+          <label class="label">URL: </label> <input formControlName="url" />
+        </div>
+        <div>
+          <label class="label">Username:</label>
+          <input formControlName="username" />
+        </div>
+        <div>
+          <label class="label">Password:</label>
+          <input formControlName="password" />
+        </div>
+        <div>
+          <label class="label">Password Reset:</label>
+          <input type="date" formControlName="pw_reset_dt" />
+          <label> Expires </label>
+          <input type="date" formControlName="pw_next_reset_dt" />
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'email_addresses'">
+        <div>
+          <label class="label">e-mail address: </label>
+          <input formControlName="email" />
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'phone_numbers'">
+        <div>
+          <label class="label">Phone Number: </label>
+          <input formControlName="number" />
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="'street_addresses'"> </ng-container>
+    </ng-container>
+
+    <div>
+      <label class="label">Memo:</label>
+      <textarea cols="40" rows="5" formControlName="memo"></textarea>
+    </div>
+
+    <div class="buttons">
+      <input type="button" (click)="onClickSave()" value="Save" />
+    </div>
+  </form>
+</div>

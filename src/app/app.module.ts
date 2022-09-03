@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TechnicalComponent } from './technical/technical.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { PersonaBitsEditComponent } from './persona-bits-edit/persona-bits-edit.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +27,15 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReportsComponent,
     ProfileComponent,
     TechnicalComponent,
+    PersonaBitsEditComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     AgGridModule,
+    MatDialogModule,
     AppRoutingModule,
     FontAwesomeModule,
   ],
