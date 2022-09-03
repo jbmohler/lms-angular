@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ColDef } from 'ag-grid-community';
-import { faPenToSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPenToSquare,
+  faTrashCan,
+  faCirclePlus,
+} from '@fortawesome/free-solid-svg-icons';
 import {
   YenotApiService,
   YenotPayload,
@@ -18,6 +22,8 @@ import {
 export class ContactsComponent implements OnInit {
   faPenToSquare = faPenToSquare;
   faTrashCan = faTrashCan;
+  faCirclePlus = faCirclePlus;
+
   fragment: string = '';
 
   preview: any = null;
@@ -72,6 +78,12 @@ export class ContactsComponent implements OnInit {
     this.location.replaceState(`/contact/${this.preview.persona.id}`);
   }
 
+  onEditPersona(persona: any) {}
+
+  onAddBit(type: string) {
+    console.log(`adding ${type}`);
+  }
+
   copyString(val: string) {
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
@@ -89,6 +101,8 @@ export class ContactsComponent implements OnInit {
   onPasswordCopy(bit: any) {
     this.copyString(bit.bit_data.password);
   }
+
+  async onEditBit(bit: any) {}
 
   async onDeleteBit(bit: any) {
     if (
