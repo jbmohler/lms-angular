@@ -18,12 +18,18 @@
         (ngSubmit)="onClickSubmit(userLogin.value)"
       >
         <div class="loginRow">
-          <label for="username">Username:&nbsp;&nbsp;</label>
+          <label class="prelabel" for="username">Username:&nbsp;&nbsp;</label>
           <input type="input" name="username" ngModel /><br />
         </div>
         <div class="loginRow">
-          <label for="password">Password:&nbsp;&nbsp;</label>
+          <label class="prelabel" for="password">Password:&nbsp;&nbsp;</label>
           <input type="password" name="password" ngModel /><br />
+        </div>
+        <div class="loginRow">
+          <input type="checkbox" name="stay_logged_in" ngModel />
+          <label for="stay_logged_in"
+            >&nbsp;Remember this login on this device</label
+          >
         </div>
         <div class="loginRow error" *ngIf="loginError">
           {{ loginError }}

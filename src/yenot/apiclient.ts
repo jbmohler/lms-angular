@@ -161,6 +161,13 @@ interface DeleteParams {
   query?: Object;
 }
 
+interface AuthenticateParams {
+  username?: string;
+  password?: string;
+  save_device_token?: boolean;
+  use_device_token?: boolean;
+}
+
 interface ManagedTimerParameters {
   minutes?: number;
   seconds?: number;
@@ -290,6 +297,13 @@ export class YenotClient {
         this.applyAuth(data);
       } catch (e: any) {
         if (e.response && e.response.status === 403) {
+          if (
+            typeof localStorage !== 'undefined' &&
+            localStorage.getItem('device-token')
+          ) {
+            await this.authenticate({ use_device_token: true });
+            return true;
+          }
           // TODO fix race condition -- how do I know that another tab didn't
           // log in while I checked in this tab?!
           if (typeof localStorage !== 'undefined') {
@@ -315,10 +329,25 @@ export class YenotClient {
 
   authChange() {}
 
-  async authenticate(username: string, password: string) {
+  async authenticate(params: AuthenticateParams) {
     const formData = new FormData();
-    formData.append('username', username);
-    formData.append('password', password);
+
+    let body: any = {};
+    if (params.use_device_token ?? false) {
+      if (typeof localStorage === 'undefined') {
+        throw new Error('localStorage is undefined; cannot use_device_token');
+      }
+
+      body['device_token'] = localStorage.getItem('device-token');
+      body['username'] = localStorage.getItem('device-user');
+    } else {
+      body['password'] = params.password!;
+      body['username'] = params.username!;
+    }
+
+    for (const [k, v] of Object.entries(body)) {
+      formData.append(k, v);
+    }
 
     let headers: any = {};
     this.addFormHeaders(headers, formData);
@@ -333,6 +362,26 @@ export class YenotClient {
       authdata = data;
     } catch (e: any) {
       throw this._convertedOBError(e);
+    }
+
+    if (params.save_device_token ?? false) {
+      if (typeof localStorage === 'undefined') {
+        throw new Error('localStorage is undefined; cannot save_device_token');
+      }
+
+			console.log('saving device token');
+			let payload = await this.post('api/user/me/device-token/new', {
+				query: { expdays: 45 },
+			});
+
+			let token = payload.namedTable('device_token').singleton()!.token;
+
+      // The device-token is saved to localStorage to avoid it being sent to
+      // every session refresh like a cookie would be.  Perhaps we should
+      // consider a special /api/device-session end-point with an http-only
+      // cookie keyed to that URL-path prefix.
+      localStorage.setItem('device-token', token);
+      localStorage.setItem('device-user', authdata['username']);
     }
 
     this.applyAuth(authdata);
@@ -401,6 +450,8 @@ export class YenotClient {
     }
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem('auth-data-cache');
+      localStorage.removeItem('device-token');
+      localStorage.removeItem('device-user');
     }
 
     this.authRefresh.clear();

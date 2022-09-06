@@ -6,7 +6,7 @@ app-tabnav {
   padding: 0.4em;
 }
 
-.loginRow label {
+.loginRow > .prelabel {
   display: inline-block;
   width: 7em;
 }

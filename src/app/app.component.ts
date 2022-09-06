@@ -35,7 +35,11 @@ export class AppComponent implements OnInit {
 
   async onClickSubmit(data: any) {
     try {
-      await this.apiService.authenticate(data.username, data.password);
+      await this.apiService.authenticate({
+        username: data.username,
+        password: data.password,
+        save_device_token: data.stay_logged_in,
+      });
     } catch (e: any) {
       this.loginError = e.message;
 
