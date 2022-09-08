@@ -1,0 +1,42 @@
+.multipane_body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.search_results2_wide {
+  float: left;
+  width: 64%;
+  margin: 5px;
+}
+
+.search_results2_narrow {
+  float: left;
+  width: 100%;
+  margin: 5px;
+}
+
+.search_results2_suppressed {
+  display: none;
+}
+
+.row_detail_wide {
+  overflow: hidden;
+  width: 34%;
+}
+
+.row_detail_narrow {
+  overflow: hidden;
+  width: 100%;
+}
+
+.row_detail_suppressed {
+  display: none;
+}
+
+.search_back {
+  display: none;
+}
+
+.search_back_scoop {
+  margin: 15px;
+}

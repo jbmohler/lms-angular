@@ -1,10 +1,18 @@
 <div class="multipane_body">
-  <div class="search_results2_narrow" id="search_wrapper">
-    <form onsubmit="return search_submit();">
+  <div
+    [ngClass]="{
+      search_results2_narrow: !previewTransactionId,
+      search_results2_wide: previewTransactionId
+    }"
+    id="search_wrapper"
+  >
+    <form (ngSubmit)="onSearch()">
       <table class="search">
         <tr>
           <td>Search:</td>
-          <td><input type="text" id="transaction_bit" /></td>
+          <td>
+            <input type="text" name="transaction_bit" [(ngModel)]="fragment" />
+          </td>
           <td><input type="submit" value="Search" /></td>
         </tr>
       </table>
@@ -12,14 +20,48 @@
 
     <div class="search_results" id="result-warning"></div>
 
-    <div class="search_results" id="transaction_data" style="width: 100%"></div>
+    <div id="transaction_data" style="height: 400px">
+      <ag-grid-angular
+        style="height: 100%"
+        class="ag-theme-alpine content-stack"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        (rowClicked)="onRowClick($event)"
+      >
+      </ag-grid-angular>
+    </div>
   </div>
 
-  <div class="row_detail_suppressed" id="preview_detail">
+  <div
+    [ngClass]="{
+      row_detail_suppressed: !previewTransactionId,
+      row_detail_wide: previewTransactionId
+    }"
+    id="preview_detail"
+  >
     <a href="#" class="search_back" id="search_back" onClick="back_to_search()"
       >&lt;&lt; Back to Search</a
     >
 
-    <div id="preview_content"></div>
+    <div id="preview_content" *ngIf="previewTransactionId && preview">
+      <div><span>Date: </span> {{ preview.transaction.trandate }}</div>
+      <div><span>Payee: </span> {{ preview.transaction.payee }}</div>
+      <div><span>Memo: </span> {{ preview.transaction.memo }}</div>
+      <div *ngIf="preview.transaction.tranref">
+        <span>Reference: </span> {{ preview.transaction.tranref }}
+      </div>
+
+      <div id="preview_splits" style="height: 400px">
+        <ag-grid-angular
+          style="height: 100%"
+          class="ag-theme-alpine content-stack"
+          [rowData]="splits_rowData"
+          [columnDefs]="splits_columnDefs"
+          [defaultColDef]="defaultColDef"
+        >
+        </ag-grid-angular>
+      </div>
+    </div>
   </div>
 </div>
