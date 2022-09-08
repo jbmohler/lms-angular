@@ -27,16 +27,12 @@ export class FinancesComponent implements OnInit {
 
   fragment: string = '';
 
-  preview: any = null;
   previewTransactionId: string | null = null;
 
   transactions: ClientTable<any> | null = null;
   columnDefs: ColDef[] = [];
   rowData: any[] = [];
   defaultColDef: any = { resizable: true, filter: 'agSetColumnFilter' };
-
-  splits_columnDefs: ColDef[] = [];
-  splits_rowData: any[] = [];
 
   constructor(
     route: ActivatedRoute,
@@ -48,15 +44,11 @@ export class FinancesComponent implements OnInit {
     this.previewTransactionId = routeParams.get('id');
   }
 
-  ngOnInit(): void {
-    if (this.previewTransactionId) {
-      this.loadPreviewTransaction(this.previewTransactionId);
-    }
-  }
+  ngOnInit(): void {}
 
   async onSearch() {
     let payload = await this.apiService.get('api/transactions/list', {
-      query: { frag: this.fragment },
+      query: { fragment: this.fragment },
     });
 
     this.transactions = payload.namedTable('trans');
@@ -67,22 +59,8 @@ export class FinancesComponent implements OnInit {
   async onRowClick(event: any) {
     // console.log(event);
     // console.log(event.data.entity_name);
+    this.previewTransactionId = event.data.tid;
 
-    await this.loadPreviewTransaction(event.data.tid);
-  }
-
-  async loadPreviewTransaction(transactionId: string) {
-    let payload = await this.apiService.get(`api/transaction/${transactionId}`);
-
-    this.previewTransactionId = transactionId;
-
-    this.preview = {};
-    this.preview.transaction = payload.namedTable('trans').singleton();
-    this.preview.splits = payload.namedTable('splits');
-
-    this.splits_columnDefs = columnsAgGrid(this.preview.splits.columns);
-    this.splits_rowData = this.preview.splits.rows;
-
-    this.location.replaceState(`/transaction/${this.preview.transaction.tid}`);
+    this.location.replaceState(`/transaction/${this.previewTransactionId}`);
   }
 }

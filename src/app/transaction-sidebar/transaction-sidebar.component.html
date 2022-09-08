@@ -1,0 +1,19 @@
+<div>
+  <div><span>Date: </span> {{ transactionRow?.trandate }}</div>
+  <div><span>Payee: </span> {{ transactionRow?.payee }}</div>
+  <div><span>Memo: </span> {{ transactionRow?.memo }}</div>
+  <div *ngIf="transactionRow?.tranref">
+    <span>Reference: </span> {{ transactionRow?.tranref }}
+  </div>
+
+  <div id="splitlist" style="height: 400px">
+    <ag-grid-angular
+      style="height: 100%"
+      class="ag-theme-alpine content-stack"
+      [rowData]="splits_rowData"
+      [columnDefs]="splits_columnDefs"
+      [defaultColDef]="defaultColDef"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

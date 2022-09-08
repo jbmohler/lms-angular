@@ -31,6 +31,10 @@ export class ClientTable<RowType> {
   rows: RowType[];
   columns: ColumnMeta[];
 
+  static emptyTable(): ClientTable<any> {
+    return new ClientTable<any>([], []);
+  }
+
   constructor(rows: RowType[], columns: ColumnMeta[]) {
     this.columns = columns;
 

@@ -44,24 +44,7 @@
       >&lt;&lt; Back to Search</a
     >
 
-    <div id="preview_content" *ngIf="previewTransactionId && preview">
-      <div><span>Date: </span> {{ preview.transaction.trandate }}</div>
-      <div><span>Payee: </span> {{ preview.transaction.payee }}</div>
-      <div><span>Memo: </span> {{ preview.transaction.memo }}</div>
-      <div *ngIf="preview.transaction.tranref">
-        <span>Reference: </span> {{ preview.transaction.tranref }}
-      </div>
-
-      <div id="preview_splits" style="height: 400px">
-        <ag-grid-angular
-          style="height: 100%"
-          class="ag-theme-alpine content-stack"
-          [rowData]="splits_rowData"
-          [columnDefs]="splits_columnDefs"
-          [defaultColDef]="defaultColDef"
-        >
-        </ag-grid-angular>
-      </div>
-    </div>
+    <app-transaction-sidebar [transactionId]="previewTransactionId">
+    </app-transaction-sidebar>
   </div>
 </div>
