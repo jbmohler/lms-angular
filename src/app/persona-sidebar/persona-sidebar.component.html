@@ -37,7 +37,8 @@
           {{ bit.bit_data.number }}
         </span>
         <span *ngSwitchCase="'urls'">
-          {{ bit.bit_data.url }}
+          <a href="{{ bit.bit_data.url }}">{{ bit.bit_data.url }}</a
+          ><br />
           <span *ngIf="bit.bit_data.username || bit.bit_data.password">
             {{ bit.bit_data.username }}<br />
             <a class="copy" (click)="onPasswordCopy(bit)">Copy Password</a>
