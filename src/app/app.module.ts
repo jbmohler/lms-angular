@@ -17,6 +17,7 @@ import { TechnicalComponent } from './technical/technical.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PersonaBitsEditComponent } from './persona-bits-edit/persona-bits-edit.component';
 import { TransactionSidebarComponent } from './transaction-sidebar/transaction-sidebar.component';
+import { PersonaSidebarComponent } from './persona-sidebar/persona-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TransactionSidebarComponent } from './transaction-sidebar/transaction-s
     TechnicalComponent,
     PersonaBitsEditComponent,
     TransactionSidebarComponent,
+    PersonaSidebarComponent,
   ],
   imports: [
     BrowserModule,

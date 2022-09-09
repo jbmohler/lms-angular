@@ -44,63 +44,9 @@
       >&lt;&lt; Back to Search</a
     >
 
-    <div id="preview_content" *ngIf="previewPersonaId">
-      <b>Name: </b>{{ preview?.persona.entity_name }}
-      <fa-icon
-        [icon]="faPenToSquare"
-        (click)="onEditPersona(preview?.persona)"
-      ></fa-icon>
-
-      <div>
-        {{ preview?.persona.memo }}
-      </div>
-
-      <div class="bit_top_commands">
-        <div (click)="onAddBit('urls')">
-          <fa-icon [icon]="faCirclePlus"></fa-icon>Web/Login
-        </div>
-        <div (click)="onAddBit('email_addresses')">
-          <fa-icon [icon]="faCirclePlus"></fa-icon>e-Mail
-        </div>
-        <div (click)="onAddBit('phone_numbers')">
-          <fa-icon [icon]="faCirclePlus"></fa-icon>Phone
-        </div>
-        <div (click)="onAddBit('street_addresses')">
-          <fa-icon [icon]="faCirclePlus"></fa-icon>Postal Address
-        </div>
-      </div>
-
-      <div class="preview_bit" *ngFor="let bit of preview?.bits.rows">
-        <fa-icon [icon]="faPenToSquare" (click)="onEditBit(bit)"></fa-icon>
-        <fa-icon [icon]="faTrashCan" (click)="onDeleteBit(bit)"></fa-icon>
-        <div class="bit_data">
-          {{ bit.name }}<br />
-          <div [ngSwitch]="bit.bit_type">
-            <span *ngSwitchCase="'email_addresses'">
-              {{ bit.bit_data.email }}
-            </span>
-            <span *ngSwitchCase="'street_addresses'">
-              {{ bit.bit_data.address1 }}
-            </span>
-            <span *ngSwitchCase="'phone_numbers'">
-              {{ bit.bit_data.number }}
-            </span>
-            <span *ngSwitchCase="'urls'">
-              {{ bit.bit_data.url }}
-              <span *ngIf="bit.bit_data.username || bit.bit_data.password">
-                {{ bit.bit_data.username }}<br />
-                <a class="copy" (click)="onPasswordCopy(bit)">Copy Password</a>
-                <div *ngIf="bit.bit_data.pw_next_reset_dt">
-                  Expires {{ bit.bit_data.pw_next_reset_dt }}
-                </div>
-              </span>
-            </span>
-            <div *ngIf="bit.memo">
-              {{ bit.memo }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-persona-sidebar
+      *ngIf="previewPersonaId"
+      [personaId]="previewPersonaId"
+    ></app-persona-sidebar>
   </div>
 </div>
