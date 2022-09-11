@@ -373,12 +373,12 @@ export class YenotClient {
         throw new Error('localStorage is undefined; cannot save_device_token');
       }
 
-			console.log('saving device token');
-			let payload = await this.post('api/user/me/device-token/new', {
-				query: { expdays: 45 },
-			});
+      console.log('saving device token');
+      let payload = await this.post('api/user/me/device-token/new', {
+        query: { expdays: 45 },
+      });
 
-			let token = payload.namedTable('device_token').singleton()!.token;
+      let token = payload.namedTable('device_token').singleton()!.token;
 
       // The device-token is saved to localStorage to avoid it being sent to
       // every session refresh like a cookie would be.  Perhaps we should
