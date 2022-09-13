@@ -3,6 +3,7 @@ import {
   faPenToSquare,
   faTrashCan,
   faCirclePlus,
+  faStar,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   YenotApiService,
@@ -23,6 +24,7 @@ export class PersonaSidebarComponent implements OnChanges {
   faPenToSquare = faPenToSquare;
   faTrashCan = faTrashCan;
   faCirclePlus = faCirclePlus;
+  faStar = faStar;
 
   personaRow: any = null;
   bits: ClientTable<any> = ClientTable.emptyTable();
@@ -99,5 +101,17 @@ export class PersonaSidebarComponent implements OnChanges {
 
   onPasswordCopy(bit: any) {
     this.copyString(bit.bit_data.password);
+  }
+
+  formattedAddress(bit: any) {
+    let d = bit.bit_data;
+    let lines: any[] = [];
+
+    lines.push(d.address1);
+    lines.push(d.address2);
+    lines.push([d.city, d.state, d.zip].filter(Boolean).join(' '));
+    lines.push(d.country);
+
+    return lines.filter(Boolean).join('\n');
   }
 }

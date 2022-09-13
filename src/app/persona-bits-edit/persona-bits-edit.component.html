@@ -44,7 +44,34 @@
           <input formControlName="number" />
         </div>
       </ng-container>
-      <ng-container *ngSwitchCase="'street_addresses'"> </ng-container>
+      <ng-container *ngSwitchCase="'street_addresses'">
+        <div>
+          <label class="label">Address:</label>
+          <div
+            style="
+              display: inline-flex;
+              width: 20em;
+              gap: 0.25em;
+              flex-direction: column;
+            "
+          >
+            <span
+              ><input style="width: 100%" formControlName="address1"
+            /></span>
+            <span
+              ><input style="width: 100%" formControlName="address2"
+            /></span>
+            <span
+              style="display: flex; gap: 0.25em; justify-content: space-between"
+            >
+              <input style="flex-grow: 5; width: 60%" formControlName="city" />
+              <input style="flex-grow: 1; width: 20%" formControlName="state" />
+              <input style="flex-grow: 2; width: 20%" formControlName="zip" />
+            </span>
+            <span> Country:&nbsp;<input formControlName="country" /> </span>
+          </div>
+        </div>
+      </ng-container>
     </ng-container>
 
     <div>

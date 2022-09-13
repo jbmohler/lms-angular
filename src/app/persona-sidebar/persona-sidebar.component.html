@@ -2,7 +2,7 @@
   <b>Name: </b>{{ personaRow?.entity_name }}
   <fa-icon [icon]="faPenToSquare" (click)="onEditPersona(personaRow)"></fa-icon>
 
-  <div>
+  <div class="raw-multiline">
     {{ personaRow?.memo }}
   </div>
 
@@ -25,19 +25,23 @@
     <fa-icon [icon]="faPenToSquare" (click)="onEditBit(bit)"></fa-icon>
     <fa-icon [icon]="faTrashCan" (click)="onDeleteBit(bit)"></fa-icon>
     <div class="bit_data">
-      {{ bit.name }}<br />
+      <span *ngIf="bit.name || bit.is_primary"
+        >{{ bit.name }}<fa-icon *ngIf="bit.is_primary" [icon]="faStar"></fa-icon
+      ></span>
       <div [ngSwitch]="bit.bit_type">
         <span *ngSwitchCase="'email_addresses'">
           {{ bit.bit_data.email }}
         </span>
         <span *ngSwitchCase="'street_addresses'">
-          {{ bit.bit_data.address1 }}
+          <div class="raw-multiline">{{ formattedAddress(bit) }}</div>
         </span>
         <span *ngSwitchCase="'phone_numbers'">
           {{ bit.bit_data.number }}
         </span>
         <span *ngSwitchCase="'urls'">
-          <a href="{{ bit.bit_data.url }}">{{ bit.bit_data.url }}</a
+          <a href="{{ bit.bit_data.url }}" target="_blank">{{
+            bit.bit_data.url
+          }}</a
           ><br />
           <span *ngIf="bit.bit_data.username || bit.bit_data.password">
             {{ bit.bit_data.username }}<br />
@@ -47,7 +51,8 @@
             </div>
           </span>
         </span>
-        <div *ngIf="bit.memo">
+        <div *ngIf="bit.memo" class="raw-multiline">
+          <hr />
           {{ bit.memo }}
         </div>
       </div>

@@ -1,7 +1,14 @@
 .bit {
-  padding: 0.5em;
+  padding: 0.25em;
+  margin: 0.75em;
   display: flex;
   gap: 0.25em;
+  background: lightgray;
+  border-radius: .5em;
+}
+
+.raw-multiline {
+  white-space: pre-wrap;
 }
 
 a.copy {
