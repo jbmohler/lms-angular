@@ -48,6 +48,8 @@ export class PersonaSidebarComponent implements OnChanges {
   onEditPersona(persona: any) {
     let dialogRef = this.dialog.open(PersonaEditComponent, {
       panelClass: 'form-edit-dialog',
+      width: '100vw',
+      maxWidth: '650px',
       data: { personaId: persona.id },
     });
 
@@ -71,6 +73,8 @@ export class PersonaSidebarComponent implements OnChanges {
   _onGenericBitEdit(dlgData: any) {
     let dialogRef = this.dialog.open(PersonaBitsEditComponent, {
       panelClass: 'form-edit-dialog',
+      width: '100vw',
+      maxWidth: '650px',
       data: dlgData,
     });
 

@@ -63,13 +63,17 @@ export class ContactsComponent implements OnInit {
   onAddPersona() {
     let dialogRef = this.dialog.open(PersonaEditComponent, {
       panelClass: 'form-edit-dialog',
+      width: '100vw',
+      maxWidth: '650px',
       data: { personaNew: true },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      this.previewPersonaId = result.personaId!;
+      if (result) {
+        this.previewPersonaId = result.personaId!;
 
-      this.location.replaceState(`/contact/${result.personaId!}`);
+        this.location.replaceState(`/contact/${result.personaId!}`);
+      }
     });
   }
 }
