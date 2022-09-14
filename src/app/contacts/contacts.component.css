@@ -33,6 +33,17 @@
   display: none;
 }
 
+.search_head {
+  width: 100%;
+  margin: 0.5em;
+  display: flex;
+  gap: 4em;
+}
+
+.persona_command {
+  cursor: pointer;
+}
+
 .search_back {
   display: none;
 }

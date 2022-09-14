@@ -11,6 +11,7 @@ import {
   ClientTable,
 } from '../yenot-api.service';
 import { MatDialog } from '@angular/material/dialog';
+import { PersonaEditComponent } from '../persona-edit/persona-edit.component';
 import { PersonaBitsEditComponent } from '../persona-bits-edit/persona-bits-edit.component';
 
 @Component({
@@ -44,7 +45,28 @@ export class PersonaSidebarComponent implements OnChanges {
     this.bits = payload.namedTable('bits');
   }
 
-  onEditPersona(persona: any) {}
+  onEditPersona(persona: any) {
+    let dialogRef = this.dialog.open(PersonaEditComponent, {
+      panelClass: 'form-edit-dialog',
+      data: { personaId: persona.id },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.loadPersona(this.personaId!);
+    });
+  }
+
+  async onDeletePersona(persona: any) {
+    if (
+      window.confirm(
+        `Are you sure you want to delete the persona ${this.personaRow.entity_name}?`
+      )
+    ) {
+      await this.apiService.delete(`api/persona/${this.personaRow.id}`);
+
+      this.loadPersona(this.personaRow.id);
+    }
+  }
 
   _onGenericBitEdit(dlgData: any) {
     let dialogRef = this.dialog.open(PersonaBitsEditComponent, {

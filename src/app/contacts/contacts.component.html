@@ -7,15 +7,16 @@
     id="search_wrapper"
   >
     <form (ngSubmit)="onSearch()">
-      <table class="search">
-        <tr>
-          <td>Search:</td>
-          <td>
-            <input type="text" name="contact_bit" [(ngModel)]="fragment" />
-          </td>
-          <td><input type="submit" value="Search" /></td>
-        </tr>
-      </table>
+      <div class="search_head">
+        <div>
+          Search:
+          <input type="text" name="contact_bit" [(ngModel)]="fragment" />
+          <input type="submit" value="Search" />
+        </div>
+        <div (click)="onAddPersona()" class="persona_command">
+          <fa-icon [icon]="faCirclePlus"></fa-icon>New Contact
+        </div>
+      </div>
     </form>
 
     <div class="search_results" id="result-warning"></div>

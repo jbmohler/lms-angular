@@ -1,0 +1,44 @@
+<div class="dialog">
+  <h1>Edit Contact</h1>
+
+  <form class="form" [formGroup]="personaForm">
+    <div style="display: flex; gap: 1em">
+      <label>
+        <input
+          type="radio"
+          value="true"
+          formControlName="corporate_entity"
+        />&nbsp;Company</label
+      >
+      <label>
+        <input
+          type="radio"
+          value="false"
+          formControlName="corporate_entity"
+        />&nbsp;Individual</label
+      >
+    </div>
+    <div *ngIf="personaRow?.corporate_entity == 'true'">
+      <label class="label">Company Name: </label>
+      <input formControlName="l_name" />
+    </div>
+    <div *ngIf="personaRow?.corporate_entity == 'false'">
+      <label class="label">First Name: </label
+      ><input formControlName="f_name" />
+      <label class="label">Last Name: </label><input formControlName="l_name" />
+    </div>
+    <div>
+      <label class="label">Organization: </label
+      ><input formControlName="organization" />
+    </div>
+
+    <div>
+      <label class="label">Memo:</label>
+      <textarea cols="40" rows="5" formControlName="memo"></textarea>
+    </div>
+
+    <div class="buttons">
+      <input type="button" (click)="onClickSave()" value="Save" />
+    </div>
+  </form>
+</div>

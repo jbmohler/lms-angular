@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { ColDef } from 'ag-grid-community';
 import {
   YenotApiService,
@@ -8,6 +10,7 @@ import {
   ClientTable,
   columnsAgGrid,
 } from '../yenot-api.service';
+import { PersonaEditComponent } from '../persona-edit/persona-edit.component';
 
 @Component({
   selector: 'app-contacts',
@@ -15,6 +18,8 @@ import {
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
+  faCirclePlus = faCirclePlus;
+
   fragment: string = '';
 
   previewPersonaId: string | null = null;
@@ -27,6 +32,7 @@ export class ContactsComponent implements OnInit {
   constructor(
     route: ActivatedRoute,
     public apiService: YenotApiService,
+    public dialog: MatDialog,
     private location: Location
   ) {
     const routeParams = route.snapshot.paramMap;
@@ -52,5 +58,18 @@ export class ContactsComponent implements OnInit {
     this.previewPersonaId = event.data.id;
 
     this.location.replaceState(`/contact/${event.data.id}`);
+  }
+
+  onAddPersona() {
+    let dialogRef = this.dialog.open(PersonaEditComponent, {
+      panelClass: 'form-edit-dialog',
+      data: { personaNew: true },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.previewPersonaId = result.personaId!;
+
+      this.location.replaceState(`/contact/${result.personaId!}`);
+    });
   }
 }

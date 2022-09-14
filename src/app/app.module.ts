@@ -18,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PersonaBitsEditComponent } from './persona-bits-edit/persona-bits-edit.component';
 import { TransactionSidebarComponent } from './transaction-sidebar/transaction-sidebar.component';
 import { PersonaSidebarComponent } from './persona-sidebar/persona-sidebar.component';
+import { PersonaEditComponent } from './persona-edit/persona-edit.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PersonaSidebarComponent } from './persona-sidebar/persona-sidebar.compo
     PersonaBitsEditComponent,
     TransactionSidebarComponent,
     PersonaSidebarComponent,
+    PersonaEditComponent,
   ],
   imports: [
     BrowserModule,
