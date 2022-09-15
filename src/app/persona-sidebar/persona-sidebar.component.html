@@ -1,31 +1,47 @@
 <div>
   <b>Name: </b>{{ personaRow?.entity_name }}&nbsp;
-  <fa-icon [icon]="faPenToSquare" (click)="onEditPersona(personaRow)"></fa-icon
+  <fa-icon
+    class="icon-buttons"
+    [icon]="faPenToSquare"
+    (click)="onEditPersona(personaRow)"
+  ></fa-icon
   >&nbsp;
-  <fa-icon [icon]="faTrashCan" (click)="onDeletePersona(personaRow)"></fa-icon>
+  <fa-icon
+    class="icon-buttons"
+    [icon]="faTrashCan"
+    (click)="onDeletePersona(personaRow)"
+  ></fa-icon>
 
   <div class="raw-multiline">
     {{ personaRow?.memo }}
   </div>
 
   <div class="bit_top_commands">
-    <div (click)="onAddBit('urls')">
+    <div class="icon-buttons" (click)="onAddBit('urls')">
       <fa-icon [icon]="faCirclePlus"></fa-icon>Web/Login
     </div>
-    <div (click)="onAddBit('email_addresses')">
+    <div class="icon-buttons" (click)="onAddBit('email_addresses')">
       <fa-icon [icon]="faCirclePlus"></fa-icon>e-Mail
     </div>
-    <div (click)="onAddBit('phone_numbers')">
+    <div class="icon-buttons" (click)="onAddBit('phone_numbers')">
       <fa-icon [icon]="faCirclePlus"></fa-icon>Phone
     </div>
-    <div (click)="onAddBit('street_addresses')">
+    <div class="icon-buttons" (click)="onAddBit('street_addresses')">
       <fa-icon [icon]="faCirclePlus"></fa-icon>Postal Address
     </div>
   </div>
 
   <div class="bit" *ngFor="let bit of bits.rows">
-    <fa-icon [icon]="faPenToSquare" (click)="onEditBit(bit)"></fa-icon>
-    <fa-icon [icon]="faTrashCan" (click)="onDeleteBit(bit)"></fa-icon>
+    <fa-icon
+      class="icon-buttons"
+      [icon]="faPenToSquare"
+      (click)="onEditBit(bit)"
+    ></fa-icon>
+    <fa-icon
+      class="icon-buttons"
+      [icon]="faTrashCan"
+      (click)="onDeleteBit(bit)"
+    ></fa-icon>
     <div class="bit_data">
       <span *ngIf="bit.name || bit.is_primary"
         >{{ bit.name }}<fa-icon *ngIf="bit.is_primary" [icon]="faStar"></fa-icon

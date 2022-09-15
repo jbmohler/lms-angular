@@ -12,6 +12,21 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.icon-buttons {
+  color: #4f7942;
+  cursor: pointer;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.icon-buttons > fa-icon {
+  margin-right: 0.3em;
+}
+
+.icon-buttons:hover {
+  color: #2aaa8a;
+}
+
 .form-edit-dialog .mat-dialog-container {
   outline: 4px solid #04aa6d;
   border-radius: 0;

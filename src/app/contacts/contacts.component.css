@@ -40,10 +40,6 @@
   gap: 4em;
 }
 
-.persona_command {
-  cursor: pointer;
-}
-
 .search_back {
   display: none;
 }

@@ -23,15 +23,3 @@ a.copy {
   flex-wrap: wrap;
   gap: 1em;
 }
-
-.bit_top_commands > div {
-  border: 3px;
-  border-radius: 0.25em;
-  border-color: green;
-  white-space: nowrap;
-  cursor: pointer;
-}
-
-.bit_top_commands > div > fa-icon {
-  margin-right: 0.3em;
-}
