@@ -4,6 +4,8 @@ import {
   faTrashCan,
   faCirclePlus,
   faStar,
+  faArrowUp,
+  faArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   YenotApiService,
@@ -13,6 +15,14 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { PersonaEditComponent } from '../persona-edit/persona-edit.component';
 import { PersonaBitsEditComponent } from '../persona-bits-edit/persona-bits-edit.component';
+
+type PairFunc = (i1: any, i2: any) => void;
+
+function pairwise(arr: any[], func: PairFunc) {
+  for (var i = 0; i < arr.length - 1; i++) {
+    func(arr[i], arr[i + 1]);
+  }
+}
 
 @Component({
   selector: 'app-persona-sidebar',
@@ -26,6 +36,8 @@ export class PersonaSidebarComponent implements OnChanges {
   faTrashCan = faTrashCan;
   faCirclePlus = faCirclePlus;
   faStar = faStar;
+  faArrowUp = faArrowUp;
+  faArrowDown = faArrowDown;
 
   personaRow: any = null;
   bits: ClientTable<any> = ClientTable.emptyTable();
@@ -43,6 +55,11 @@ export class PersonaSidebarComponent implements OnChanges {
 
     this.personaRow = payload.namedTable('persona').singleton();
     this.bits = payload.namedTable('bits');
+
+    pairwise(this.bits.rows, function (current, next) {
+      current.bit_below = next.id;
+      next.bit_above = current.id;
+    });
   }
 
   onEditPersona(persona: any) {
@@ -139,5 +156,22 @@ export class PersonaSidebarComponent implements OnChanges {
     lines.push(d.country);
 
     return lines.filter(Boolean).join('\n');
+  }
+
+  async onReorderBit(bid1: string, bid2: string) {
+    await this.apiService.put(
+      `api/persona/${this.personaRow.id}/bits/reorder`,
+      { body: { bit_id1: bid1, bit_id2: bid2 } }
+    );
+
+    await this.loadPersona(this.personaRow.id);
+  }
+
+  async onReorderBitDown(bit: any) {
+    await this.onReorderBit(bit.bit_below, bit.id);
+  }
+
+  async onReorderBitUp(bit: any) {
+    await this.onReorderBit(bit.id, bit.bit_above);
   }
 }

@@ -32,16 +32,32 @@
   </div>
 
   <div class="bit" *ngFor="let bit of bits.rows">
-    <fa-icon
-      class="icon-buttons"
-      [icon]="faPenToSquare"
-      (click)="onEditBit(bit)"
-    ></fa-icon>
-    <fa-icon
-      class="icon-buttons"
-      [icon]="faTrashCan"
-      (click)="onDeleteBit(bit)"
-    ></fa-icon>
+    <div style="display: flex; flex-direction: column; gap: 0.25em">
+      <fa-icon
+        class="icon-buttons"
+        [icon]="faPenToSquare"
+        (click)="onEditBit(bit)"
+      ></fa-icon>
+      <fa-icon
+        class="icon-buttons"
+        [icon]="faTrashCan"
+        (click)="onDeleteBit(bit)"
+      ></fa-icon>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 0.25em">
+      <fa-icon
+        class="icon-buttons"
+        *ngIf="bit.bit_above"
+        [icon]="faArrowUp"
+        (click)="onReorderBitUp(bit)"
+      ></fa-icon>
+      <fa-icon
+        class="icon-buttons"
+        *ngIf="bit.bit_below"
+        [icon]="faArrowDown"
+        (click)="onReorderBitDown(bit)"
+      ></fa-icon>
+    </div>
     <div class="bit_data">
       <span *ngIf="bit.name || bit.is_primary"
         >{{ bit.name }}<fa-icon *ngIf="bit.is_primary" [icon]="faStar"></fa-icon
