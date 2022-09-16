@@ -1,19 +1,25 @@
 <div>
-  <b>Name: </b>{{ personaRow?.entity_name }}&nbsp;
-  <fa-icon
-    class="icon-buttons"
-    [icon]="faPenToSquare"
-    (click)="onEditPersona(personaRow)"
-  ></fa-icon
-  >&nbsp;
-  <fa-icon
-    class="icon-buttons"
-    [icon]="faTrashCan"
-    (click)="onDeletePersona(personaRow)"
-  ></fa-icon>
+  <div class="blob">
+    <b>Name: </b>{{ personaRow?.entity_name }}&nbsp;
+    <fa-icon
+      class="icon-buttons"
+      [icon]="faPenToSquare"
+      (click)="onEditPersona(personaRow)"
+    ></fa-icon
+    >&nbsp;
+    <fa-icon
+      class="icon-buttons"
+      [icon]="faTrashCan"
+      (click)="onDeletePersona(personaRow)"
+    ></fa-icon>
 
-  <div class="raw-multiline">
-    {{ personaRow?.memo }}
+    <div *ngIf="personaRow?.organization" class="raw-multiline">
+      {{ personaRow?.organization }}
+    </div>
+
+    <div *ngIf="personaRow?.memo" class="raw-multiline">
+      {{ personaRow?.memo }}
+    </div>
   </div>
 
   <div class="bit_top_commands">
@@ -31,7 +37,7 @@
     </div>
   </div>
 
-  <div class="bit" *ngFor="let bit of bits.rows">
+  <div class="bit blob" *ngFor="let bit of bits.rows">
     <div style="display: flex; flex-direction: column; gap: 0.25em">
       <fa-icon
         class="icon-buttons"

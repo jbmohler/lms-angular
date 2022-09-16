@@ -28,7 +28,7 @@ body {
 }
 
 .form-edit-dialog .mat-dialog-container {
-  outline: 4px solid #04aa6d;
+  outline: 4px solid #4f7942;
   border-radius: 0;
   margin: 0px;
   padding: 0px;
@@ -45,7 +45,7 @@ body {
   padding: 0.25em;
   margin: 0px;
   margin-bottom: 0.6em;
-  background-color: #04aa6d;
+  background-color: #4f7942;
   color: white;
 }
 
@@ -55,7 +55,14 @@ body {
 }
 
 .dialog > form > .buttons > input {
-  background-color: #04aa6d;
+  background-color: #4f7942;
   color: white;
   border-radius: 3px;
+}
+
+.ag-theme-alpine .ag-cell-focus {
+  border-color: #4f7942;
+}
+.ag-theme-alpine .ag-row-hover {
+  background-color: #4f7942;
 }

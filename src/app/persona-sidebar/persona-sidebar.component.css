@@ -1,10 +1,13 @@
-.bit {
+.blob {
   padding: 0.25em;
   margin: 0.75em;
+  background: #e5e4e2;
+  border-radius: 0.5em;
+}
+
+.bit {
   display: flex;
   gap: 0.25em;
-  background: lightgray;
-  border-radius: 0.5em;
 }
 
 .raw-multiline {
