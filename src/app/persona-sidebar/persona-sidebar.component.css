@@ -1,6 +1,6 @@
 .blob {
-  padding: 0.25em;
-  margin: 0.75em;
+  margin: 0.3em;
+  padding: 0.3em;
   background: #e5e4e2;
   border-radius: 0.5em;
 }
@@ -21,7 +21,12 @@ a.copy {
 }
 
 .bit_top_commands {
-  padding: 1em;
+  margin: 0.3em;
+  padding: 0.3em;
+  border-radius: 0.5em;
+  border-style: solid;
+  border-width: 4px;
+  border-color: #e5e4e2;
   display: flex;
   flex-wrap: wrap;
   gap: 1em;

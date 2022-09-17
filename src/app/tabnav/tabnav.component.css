@@ -1,10 +1,11 @@
 .tab_div {
-  display: block;
-  height: 2em;
+  display: flex;
+  overflow: hidden;
+  background-color: #333;
 }
 
 .tab_div a {
-  float: left;
+  /* float: left;*/
   display: block;
   color: white;
   background-color: #333;
@@ -36,21 +37,25 @@
     display: block;
   }
   .tab_div a.icon {
-    float: right;
     display: block;
+    right: 0;
+    top: 0;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .tab_div.responsive {
+  .tab_div.toggled {
+    display: flex;
+    flex-direction: column;
     position: relative;
+    width: 100%;
   }
-  .tab_div.responsive .icon {
+  .tab_div.toggled .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
-  .tab_div.responsive a {
+  .tab_div.toggled a {
     float: none;
     display: block;
     text-align: left;

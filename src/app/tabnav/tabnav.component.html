@@ -1,8 +1,4 @@
-<div
-  class="tab_div"
-  id="the_tab_div"
-  style="height: 3em; background-color: #333"
->
+<div [className]="toggled + 'tab_div'" id="the_tab_div">
   <div>
     <a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
   </div>
@@ -34,7 +30,7 @@
       >Technical</a
     >
   </div>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
+  <a href="javascript:void(0);" class="icon" (click)="toggleShowAll()">
+    <fa-icon [icon]="faBars"></fa-icon>
   </a>
 </div>

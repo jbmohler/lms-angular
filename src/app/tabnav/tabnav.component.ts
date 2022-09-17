@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { YenotApiService } from '../yenot-api.service';
 
 @Component({
@@ -8,6 +9,8 @@ import { YenotApiService } from '../yenot-api.service';
   styleUrls: ['./tabnav.component.css'],
 })
 export class TabnavComponent implements OnInit {
+  faBars = faBars;
+
   root_active: boolean = false;
   root_visible: boolean = false;
   contact_active: boolean = false;
@@ -20,6 +23,8 @@ export class TabnavComponent implements OnInit {
   reports_visible: boolean = false;
   profile_active: boolean = false;
   technical_active: boolean = false;
+
+  toggled: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -69,4 +74,13 @@ export class TabnavComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  toggleShowAll() {
+    if (this.toggled) {
+      this.toggled = '';
+    } else {
+      this.toggled = 'toggled ';
+    }
+    console.log('>> ' + this.toggled);
+  }
 }
