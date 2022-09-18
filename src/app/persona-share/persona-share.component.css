@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  padding: 0.5em;
+}
+
+.shares {
+  padding: 1em;
+
+  display: flex;
+  flex-direction: row-wrap;
+}

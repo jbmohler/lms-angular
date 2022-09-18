@@ -6,6 +6,8 @@ import {
   faStar,
   faArrowUp,
   faArrowDown,
+  faUserPlus,
+  faUserCheck,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   YenotApiService,
@@ -14,6 +16,7 @@ import {
 } from '../yenot-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonaEditComponent } from '../persona-edit/persona-edit.component';
+import { PersonaShareComponent } from '../persona-share/persona-share.component';
 import { PersonaBitsEditComponent } from '../persona-bits-edit/persona-bits-edit.component';
 
 type PairFunc = (i1: any, i2: any) => void;
@@ -38,9 +41,13 @@ export class PersonaSidebarComponent implements OnChanges {
   faStar = faStar;
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
+  faUserPlus = faUserPlus;
+  faUserCheck = faUserCheck;
 
   personaRow: any = null;
   bits: ClientTable<any> = ClientTable.emptyTable();
+
+  isEditable: boolean = false;
 
   constructor(public dialog: MatDialog, public apiService: YenotApiService) {}
 
@@ -55,6 +62,9 @@ export class PersonaSidebarComponent implements OnChanges {
 
     this.personaRow = payload.namedTable('persona').singleton();
     this.bits = payload.namedTable('bits');
+
+    this.isEditable =
+      this.personaRow.owner_id === this.apiService.authdata['userid'];
 
     pairwise(this.bits.rows, function (current, next) {
       current.bit_below = next.id;
@@ -85,6 +95,32 @@ export class PersonaSidebarComponent implements OnChanges {
 
       this.loadPersona(this.personaRow.id);
     }
+  }
+
+  async onChangeOwner(persona: any) {
+    let dialogRef = this.dialog.open(PersonaShareComponent, {
+      panelClass: 'form-edit-dialog',
+      width: '100vw',
+      maxWidth: '650px',
+      data: { reown: true, personaId: this.personaId },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.loadPersona(this.personaId!);
+    });
+  }
+
+  async onSelectShare(persona: any) {
+    let dialogRef = this.dialog.open(PersonaShareComponent, {
+      panelClass: 'form-edit-dialog',
+      width: '100vw',
+      maxWidth: '650px',
+      data: { reshare: true, personaId: this.personaId },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.loadPersona(this.personaId!);
+    });
   }
 
   _onGenericBitEdit(dlgData: any) {

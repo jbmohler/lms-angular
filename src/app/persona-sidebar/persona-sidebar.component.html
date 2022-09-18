@@ -3,12 +3,14 @@
     <b>Name: </b>{{ personaRow?.entity_name }}&nbsp;
     <fa-icon
       class="icon-buttons"
+      *ngIf="isEditable"
       [icon]="faPenToSquare"
       (click)="onEditPersona(personaRow)"
     ></fa-icon
     >&nbsp;
     <fa-icon
       class="icon-buttons"
+      *ngIf="isEditable"
       [icon]="faTrashCan"
       (click)="onDeletePersona(personaRow)"
     ></fa-icon>
@@ -23,6 +25,24 @@
   </div>
 
   <div class="bit_top_commands">
+    <span>{{ personaRow?.owner_name }}</span>
+    <div
+      class="icon-buttons"
+      *ngIf="isEditable"
+      (click)="onSelectShare(personaRow)"
+    >
+      <fa-icon [icon]="faUserPlus"></fa-icon>Share
+    </div>
+    <div
+      class="icon-buttons"
+      *ngIf="isEditable"
+      (click)="onChangeOwner(personaRow)"
+    >
+      <fa-icon [icon]="faUserCheck"></fa-icon>Change Owner
+    </div>
+  </div>
+
+  <div class="bit_top_commands" *ngIf="isEditable">
     <div class="icon-buttons" (click)="onAddBit('urls')">
       <fa-icon [icon]="faCirclePlus"></fa-icon>Web/Login
     </div>
@@ -41,11 +61,13 @@
     <div style="display: flex; flex-direction: column; gap: 0.25em">
       <fa-icon
         class="icon-buttons"
+        *ngIf="isEditable"
         [icon]="faPenToSquare"
         (click)="onEditBit(bit)"
       ></fa-icon>
       <fa-icon
         class="icon-buttons"
+        *ngIf="isEditable"
         [icon]="faTrashCan"
         (click)="onDeleteBit(bit)"
       ></fa-icon>
@@ -53,13 +75,13 @@
     <div style="display: flex; flex-direction: column; gap: 0.25em">
       <fa-icon
         class="icon-buttons"
-        *ngIf="bit.bit_above"
+        *ngIf="bit.bit_above && isEditable"
         [icon]="faArrowUp"
         (click)="onReorderBitUp(bit)"
       ></fa-icon>
       <fa-icon
         class="icon-buttons"
-        *ngIf="bit.bit_below"
+        *ngIf="bit.bit_below && isEditable"
         [icon]="faArrowDown"
         (click)="onReorderBitDown(bit)"
       ></fa-icon>

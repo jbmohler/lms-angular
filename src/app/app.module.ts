@@ -19,6 +19,7 @@ import { PersonaBitsEditComponent } from './persona-bits-edit/persona-bits-edit.
 import { TransactionSidebarComponent } from './transaction-sidebar/transaction-sidebar.component';
 import { PersonaSidebarComponent } from './persona-sidebar/persona-sidebar.component';
 import { PersonaEditComponent } from './persona-edit/persona-edit.component';
+import { PersonaShareComponent } from './persona-share/persona-share.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { PersonaEditComponent } from './persona-edit/persona-edit.component';
     TransactionSidebarComponent,
     PersonaSidebarComponent,
     PersonaEditComponent,
+    PersonaShareComponent,
   ],
   imports: [
     BrowserModule,
