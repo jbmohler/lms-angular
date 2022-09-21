@@ -215,6 +215,7 @@ export class YenotClient {
   instance: AxiosInstance;
   root: string;
   authdata: any | null;
+  accepting: boolean = false;
   authRefresh: ManagedTimer;
   sessionMarginMinutes: number = 20;
   activityMap: Map<string, number> | null = null;

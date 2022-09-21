@@ -1,0 +1,25 @@
+<div>
+  <h1>Welcome to LMS.</h1>
+
+  <p>
+    Enter your password and confirm to complete the initialization of your
+    account.
+  </p>
+
+  <form #acceptForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="loginRow">
+      <label class="prelabel" for="password1">Password: </label
+      ><input type="password" name="password1" [(ngModel)]="password1" />
+    </div>
+    <div class="loginRow">
+      <label class="prelabel" for="password2">Confirm:</label>
+      <input type="password" name="password2" [(ngModel)]="password2" />
+    </div>
+
+    <div class="loginRow error" *ngIf="loginError">
+      {{ loginError }}
+    </div>
+
+    <input type="submit" value="Set" />
+  </form>
+</div>

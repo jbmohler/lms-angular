@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getCookie, setCookie } from 'typescript-cookie';
+import { Location } from '@angular/common';
 import { YenotApiService } from './yenot-api.service';
 
 @Component({
@@ -10,11 +10,15 @@ import { YenotApiService } from './yenot-api.service';
 export class AppComponent implements OnInit {
   title = 'lms';
 
+  accepting: boolean;
   authenticated: boolean;
   loginError: string | null = null;
 
-  constructor(public apiService: YenotApiService) {
+  constructor(public apiService: YenotApiService, private location: Location) {
     this.authenticated = false;
+    let p = this.location.path();
+    // ugly hack
+    this.accepting = p.includes('user/') && p.includes('/accept');
 
     this.apiService.authUpdate.subscribe((value) => {
       this.updateAuthStatus(value);
@@ -27,6 +31,7 @@ export class AppComponent implements OnInit {
 
   async updateAuthStatus(value: any) {
     this.authenticated = await this.apiService.isAuthenticated(false);
+    this.accepting = await this.apiService.accepting;
   }
 
   async checkAuthenticated() {

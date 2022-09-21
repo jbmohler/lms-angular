@@ -1,0 +1,12 @@
+.loginRow {
+  padding: 0.4em;
+}
+
+.loginRow > .prelabel {
+  display: inline-block;
+  width: 7em;
+}
+
+.loginForm .error {
+  color: red;
+}
