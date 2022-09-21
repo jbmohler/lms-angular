@@ -9,6 +9,7 @@ import { YenotApiService } from '../yenot-api.service';
 export class BannerComponent implements OnInit {
   displayName: string | null = null;
   hasPermTechnical: boolean = false;
+  hasRoscoe: boolean = false;
 
   constructor(public apiService: YenotApiService) {
     this.apiService.authUpdate.subscribe((value) => {
@@ -28,9 +29,13 @@ export class BannerComponent implements OnInit {
       this.hasPermTechnical = this.apiService.hasPermission(
         'put_api_role_record'
       );
+      this.hasRoscoe = this.apiService.hasPermission(
+        'post_api_roscoe_reminder'
+      );
     } else {
       this.displayName = null;
       this.hasPermTechnical = false;
+      this.hasRoscoe = false;
     }
   }
 
@@ -40,5 +45,9 @@ export class BannerComponent implements OnInit {
 
   async onUserLogout() {
     await this.apiService.logout();
+  }
+
+  async onRoscoeSubmit() {
+    alert('not yet implemented');
   }
 }

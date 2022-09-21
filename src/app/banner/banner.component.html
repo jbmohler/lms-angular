@@ -12,10 +12,10 @@
       <a id="rtx_logout" (click)="onUserLogout()">Logout</a>
     </div>
   </div>
-  <div class="banner_roscoe" *ngIf="isAuthenticated()">
-    <form onsubmit="return roscoe_submit();">
+  <div class="banner_roscoe" *ngIf="hasRoscoe">
+    <form #roscoeForm="ngForm" (ngSubmit)="onRoscoeSubmit()">
       <p>Remind me later: <input type="submit" value="Send" /></p>
-      <textarea rows="2" id="roscoe_reminder"></textarea><br />
+      <textarea rows="2" name="roscoe_reminder"></textarea>
     </form>
   </div>
 </div>
