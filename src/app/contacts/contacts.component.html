@@ -1,8 +1,8 @@
 <div class="multipane_body">
   <div
     [ngClass]="{
-      search_results2_narrow: !previewPersonaId,
-      search_results2_wide: previewPersonaId
+      search_list_no_preview: !previewPersonaId,
+      search_list_with_preview: previewPersonaId
     }"
     id="search_wrapper"
   >
@@ -36,12 +36,16 @@
 
   <div
     [ngClass]="{
-      row_detail_suppressed: !previewPersonaId,
-      row_detail_wide: previewPersonaId
+      persona_no_preview: !previewPersonaId,
+      persona_preview: previewPersonaId
     }"
     id="preview_detail"
   >
-    <a href="#" class="search_back" id="search_back" onClick="back_to_search()"
+    <a
+      href
+      class="search_back"
+      id="search_back"
+      (click)="onBackToSearch($event)"
       >&lt;&lt; Back to Search</a
     >
 

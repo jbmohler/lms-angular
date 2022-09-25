@@ -36,7 +36,9 @@ export class ContactsComponent implements OnInit {
     private location: Location
   ) {
     const routeParams = route.snapshot.paramMap;
+    const queryParams = route.snapshot.queryParamMap;
     this.previewPersonaId = routeParams.get('id');
+    this.fragment = queryParams.get('fragment')!;
   }
 
   ngOnInit(): void {}
@@ -49,6 +51,8 @@ export class ContactsComponent implements OnInit {
     this.personas = payload.namedTable('personas');
     this.columnDefs = columnsAgGrid(this.personas.columns);
     this.rowData = this.personas.rows;
+
+    this.resetLocationState();
   }
 
   async onRowClick(event: any) {
@@ -57,7 +61,26 @@ export class ContactsComponent implements OnInit {
 
     this.previewPersonaId = event.data.id;
 
-    this.location.replaceState(`/contact/${event.data.id}`);
+    this.resetLocationState();
+  }
+
+  async onBackToSearch(event: any) {
+    event.preventDefault();
+    this.previewPersonaId = null;
+
+    this.resetLocationState();
+  }
+
+  resetLocationState() {
+    let tail = '';
+    if (this.fragment) {
+      tail = `?fragment=${this.fragment}`;
+    }
+    if (this.previewPersonaId) {
+      this.location.replaceState(`/contact/${this.previewPersonaId}${tail}`);
+    } else {
+      this.location.replaceState(`/contacts${tail}`);
+    }
   }
 
   onAddPersona() {
