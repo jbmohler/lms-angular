@@ -1,4 +1,11 @@
-import { Component, OnChanges, SimpleChanges, Input } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  SimpleChanges,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import {
   faPenToSquare,
   faTrashCan,
@@ -34,6 +41,8 @@ function pairwise(arr: any[], func: PairFunc) {
 })
 export class PersonaSidebarComponent implements OnChanges {
   @Input() personaId: string | null = null;
+
+  @Output() personaChange: EventEmitter<any> = new EventEmitter<any>();
 
   faPenToSquare = faPenToSquare;
   faTrashCan = faTrashCan;
@@ -82,6 +91,8 @@ export class PersonaSidebarComponent implements OnChanges {
 
     dialogRef.afterClosed().subscribe((result) => {
       this.loadPersona(this.personaId!);
+
+      this.personaChange.emit();
     });
   }
 
@@ -93,7 +104,11 @@ export class PersonaSidebarComponent implements OnChanges {
     ) {
       await this.apiService.delete(`api/persona/${this.personaRow.id}`);
 
-      this.loadPersona(this.personaRow.id);
+      this.personaId = null;
+      this.personaRow = null;
+      this.bits = ClientTable.emptyTable();
+
+      this.personaChange.emit();
     }
   }
 

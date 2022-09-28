@@ -71,6 +71,10 @@ export class ContactsComponent implements OnInit {
     this.resetLocationState();
   }
 
+  async onChangePersona() {
+    this.onSearch();
+  }
+
   resetLocationState() {
     let tail = '';
     if (this.fragment) {

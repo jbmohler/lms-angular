@@ -52,6 +52,7 @@
     <app-persona-sidebar
       *ngIf="previewPersonaId"
       [personaId]="previewPersonaId"
+      (personaChange)="onChangePersona()"
     ></app-persona-sidebar>
   </div>
 </div>
