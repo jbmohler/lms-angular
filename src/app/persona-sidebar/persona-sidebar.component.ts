@@ -55,6 +55,7 @@ export class PersonaSidebarComponent implements OnChanges {
 
   personaRow: any = null;
   bits: ClientTable<any> = ClientTable.emptyTable();
+  shares: any[] = [];
 
   isEditable: boolean = false;
 
@@ -72,8 +73,12 @@ export class PersonaSidebarComponent implements OnChanges {
     this.personaRow = payload.namedTable('persona').singleton();
     this.bits = payload.namedTable('bits');
 
-    this.isEditable =
-      this.personaRow.owner_id === this.apiService.authdata['userid'];
+    let selfId = this.apiService.authdata['userid'];
+    this.isEditable = this.personaRow.owner_id === selfId;
+
+    this.shares = this.personaRow.share_refs.filter(
+      (r: any) => r.id !== this.personaRow.owner_id
+    );
 
     pairwise(this.bits.rows, function (current, next) {
       current.bit_below = next.id;

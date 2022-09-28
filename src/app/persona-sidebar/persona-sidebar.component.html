@@ -25,7 +25,14 @@
   </div>
 
   <div class="bit_top_commands">
-    <span>{{ personaRow?.owner_name }}</span>
+    <div><b>Owner: </b>{{ personaRow?.owner_name }}</div>
+    <div *ngIf="shares.length > 0">
+      <b>Shared: </b>
+      <span *ngFor="let share of shares.slice(0, shares.length > 3 ? 2 : 3)"
+        >{{ share.name }};
+      </span>
+      <span *ngIf="shares.length > 3">+ {{ shares.length - 2 }} more</span>
+    </div>
     <div
       class="icon-buttons"
       *ngIf="isEditable"
