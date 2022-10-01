@@ -21,6 +21,7 @@ import { PersonaSidebarComponent } from './persona-sidebar/persona-sidebar.compo
 import { PersonaEditComponent } from './persona-edit/persona-edit.component';
 import { PersonaShareComponent } from './persona-share/persona-share.component';
 import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
+import { ProfileAddressEditComponent } from './profile-address-edit/profile-address-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
     PersonaEditComponent,
     PersonaShareComponent,
     AcceptInviteComponent,
+    ProfileAddressEditComponent,
   ],
   imports: [
     BrowserModule,

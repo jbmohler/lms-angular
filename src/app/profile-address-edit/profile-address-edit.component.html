@@ -1,0 +1,22 @@
+<div class="dialog">
+  <h1>Edit Address</h1>
+
+  <form class="form" [formGroup]="addressForm">
+    <div>
+      <label class="label">Type: </label><input formControlName="addr_type" />
+    </div>
+    <div>
+      <label class="label">Address: </label><input formControlName="address" />
+    </div>
+    <div>
+      <div class="label">&nbsp;</div>
+      <input type="checkbox" formControlName="is_primary" /><label
+        >Primary
+      </label>
+    </div>
+
+    <div class="buttons">
+      <input type="button" (click)="onClickSave()" value="Save" />
+    </div>
+  </form>
+</div>
