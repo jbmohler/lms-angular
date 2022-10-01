@@ -41,7 +41,11 @@ export class ContactsComponent implements OnInit {
     this.fragment = queryParams.get('fragment')!;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.fragment) {
+      this.onSearch();
+    }
+  }
 
   async onSearch() {
     let payload = await this.apiService.get('api/personas/list', {

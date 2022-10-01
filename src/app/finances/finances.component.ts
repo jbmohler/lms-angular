@@ -41,10 +41,23 @@ export class FinancesComponent implements OnInit {
     private location: Location
   ) {
     const routeParams = route.snapshot.paramMap;
+    const queryParams = route.snapshot.queryParamMap;
     this.previewTransactionId = routeParams.get('id');
+    this.fragment = queryParams.get('fragment')!;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.fragment) {
+      this.onSearch();
+    }
+  }
+
+  async onBackToSearch(event: any) {
+    event.preventDefault();
+    this.previewTransactionId = null;
+
+    this.resetLocationState();
+  }
 
   async onSearch() {
     let payload = await this.apiService.get('api/transactions/list', {
@@ -61,6 +74,20 @@ export class FinancesComponent implements OnInit {
     // console.log(event.data.entity_name);
     this.previewTransactionId = event.data.tid;
 
-    this.location.replaceState(`/transaction/${this.previewTransactionId}`);
+    this.resetLocationState();
+  }
+
+  resetLocationState() {
+    let tail = '';
+    if (this.fragment) {
+      tail = `?fragment=${this.fragment}`;
+    }
+    if (this.previewTransactionId) {
+      this.location.replaceState(
+        `/transaction/${this.previewTransactionId}${tail}`
+      );
+    } else {
+      this.location.replaceState(`/transactions${tail}`);
+    }
   }
 }
