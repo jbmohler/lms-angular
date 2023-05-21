@@ -27,7 +27,7 @@ body {
   color: #2aaa8a;
 }
 
-.form-edit-dialog .mat-dialog-container {
+.form-edit-dialog .mat-mdc-dialog-container {
   outline: 4px solid #4f7942;
   border-radius: 0;
   margin: 0px;
@@ -35,7 +35,7 @@ body {
 }
 
 @media screen and (min-width: 600px) {
-  .form-edit-dialog .mat-dialog-container {
+  .form-edit-dialog .mat-mdc-dialog-container {
     border-radius: 0.5em;
   }
 }
