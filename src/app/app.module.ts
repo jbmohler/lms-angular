@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -52,6 +53,7 @@ import { ProfileAddressEditComponent } from './profile-address-edit/profile-addr
     BrowserAnimationsModule,
     AgGridModule,
     MatDialogModule,
+    MatProgressSpinnerModule,
     AppRoutingModule,
     FontAwesomeModule,
   ],

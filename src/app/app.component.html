@@ -1,13 +1,16 @@
 <app-banner></app-banner>
 <div>
-  <ng-container *ngIf="accepting">
+  <ng-container *ngIf="authStatus === 'unknown'">
+    <mat-spinner></mat-spinner>
+  </ng-container>
+  <ng-container *ngIf="authStatus === 'accepting'">
     <router-outlet></router-outlet>
   </ng-container>
-  <ng-container *ngIf="authenticated">
+  <ng-container *ngIf="authStatus === 'yes'">
     <app-tabnav></app-tabnav>
     <router-outlet></router-outlet>
   </ng-container>
-  <ng-container *ngIf="!authenticated && !accepting">
+  <ng-container *ngIf="authStatus === 'no'">
     <!-- TODO this is pretty https://www.w3schools.com/howto/howto_css_login_form.asp -->
     <p>Login</p>
     <form
