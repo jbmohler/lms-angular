@@ -1,0 +1,54 @@
+<div class="multipane_body">
+  <div
+    [ngClass]="{
+      search_list_no_preview: !previewUserId,
+      search_list_with_preview: previewUserId
+    }"
+    id="search_wrapper"
+  >
+    <!-- <form (ngSubmit)="onSearch()">
+      <table class="search">
+        <tr>
+          <td>Search:</td>
+          <td>
+            <input type="text" name="user_bit" [(ngModel)]="fragment" />
+          </td>
+          <td><input type="submit" value="Search" /></td>
+        </tr>
+      </table>
+    </form>
+	-->
+
+    <div class="search_results" id="result-warning"></div>
+
+    <div id="user_data" style="height: 400px">
+      <ag-grid-angular
+        style="height: 100%"
+        class="ag-theme-alpine content-stack"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        (rowClicked)="onRowClick($event)"
+      >
+      </ag-grid-angular>
+    </div>
+  </div>
+
+  <div
+    [ngClass]="{
+      user_no_preview: !previewUserId,
+      user_preview: previewUserId
+    }"
+    id="preview_detail"
+  >
+    <a
+      href
+      class="search_back"
+      id="search_back"
+      (click)="onBackToSearch($event)"
+      >&lt;&lt; Back to Search</a
+    >
+
+    <app-user-sidebar [userId]="previewUserId"> </app-user-sidebar>
+  </div>
+</div>

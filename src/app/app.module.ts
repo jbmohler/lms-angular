@@ -16,10 +16,12 @@ import { ProfileComponent } from './profile/profile.component';
 import { TechnicalComponent } from './technical/technical.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PersonaBitsEditComponent } from './persona-bits-edit/persona-bits-edit.component';
+import { AdminComponent } from './admin/admin.component';
 import { TransactionSidebarComponent } from './transaction-sidebar/transaction-sidebar.component';
 import { PersonaSidebarComponent } from './persona-sidebar/persona-sidebar.component';
 import { PersonaEditComponent } from './persona-edit/persona-edit.component';
 import { PersonaShareComponent } from './persona-share/persona-share.component';
+import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
 import { ProfileAddressEditComponent } from './profile-address-edit/profile-address-edit.component';
 
@@ -32,12 +34,14 @@ import { ProfileAddressEditComponent } from './profile-address-edit/profile-addr
     FinancesComponent,
     ReportsComponent,
     ProfileComponent,
+    AdminComponent,
     TechnicalComponent,
     PersonaBitsEditComponent,
     TransactionSidebarComponent,
     PersonaSidebarComponent,
     PersonaEditComponent,
     PersonaShareComponent,
+    UserSidebarComponent,
     AcceptInviteComponent,
     ProfileAddressEditComponent,
   ],

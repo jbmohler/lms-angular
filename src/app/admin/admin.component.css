@@ -1,0 +1,44 @@
+.multipane_body {
+  overflow: hidden;
+  height: 100%;
+}
+
+.search_list_with_preview {
+  float: left;
+  width: 64%;
+  margin: 5px;
+}
+
+.search_list_no_preview {
+  float: left;
+  width: 100%;
+  margin: 5px;
+}
+
+.user_preview {
+  overflow: hidden;
+  width: 34%;
+}
+
+.user_no_preview {
+  display: none;
+}
+
+.search_back {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .search_back {
+    display: block;
+    margin: 0.5em;
+  }
+
+  .search_list_with_preview {
+    display: none;
+  }
+
+  .user_preview {
+    width: 100%;
+  }
+}

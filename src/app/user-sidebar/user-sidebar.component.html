@@ -1,0 +1,15 @@
+<div>
+  <div><span>User: </span> {{ userRow?.username }}</div>
+  <div><span>Display name: </span> {{ userRow?.full_name }}</div>
+
+  <div id="splitlist" style="height: 400px">
+    <ag-grid-angular
+      style="height: 100%"
+      class="ag-theme-alpine content-stack"
+      [rowData]="sessions_rowData"
+      [columnDefs]="sessions_columnDefs"
+      [defaultColDef]="defaultColDef"
+    >
+    </ag-grid-angular>
+  </div>
+</div>

@@ -21,6 +21,8 @@ export class TabnavComponent implements OnInit {
   finance_visible: boolean = false;
   reports_active: boolean = false;
   reports_visible: boolean = false;
+  admin_active: boolean = false;
+  admin_visible: boolean = false;
   profile_active: boolean = false;
   technical_active: boolean = false;
 
@@ -47,6 +49,7 @@ export class TabnavComponent implements OnInit {
     this.databit_active = this.matchesPrefix(['/databit', '/databits']);
     this.finance_active = this.matchesPrefix(['/finance', '/transaction']);
     this.reports_active = this.matchesPrefix(['/reports']);
+    this.admin_active = this.matchesPrefix(['/admin']);
     this.profile_active = this.matchesPrefix(['/lms/user-profile']);
     this.technical_active = this.matchesPrefix(['/lms/technical']);
   }
@@ -70,6 +73,7 @@ export class TabnavComponent implements OnInit {
     this.contact_visible = this.hasPermission('get_api_personas_list');
     this.databit_visible = this.hasPermission('get_api_databits_list');
     this.finance_visible = this.hasPermission('get_api_transactions_list');
+    this.admin_visible = this.hasPermission('get_api_users_list');
     this.reports_visible = true; // TODO filter by something
   }
 
