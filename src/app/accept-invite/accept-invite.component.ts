@@ -59,8 +59,8 @@ export class AcceptInviteComponent implements OnInit {
     }
 
     // trigger a fresh login
-    this.location.go('/');
     this.apiService.accepting = false;
+    this.location.go('/');
     this.apiService.authChange();
   }
 }

@@ -6,6 +6,7 @@ import {
   ClientTable,
   columnsAgGrid,
 } from '../yenot-api.service';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-sidebar',
@@ -15,12 +16,17 @@ import {
 export class UserSidebarComponent implements OnChanges {
   @Input() userId: string | null = null;
 
+  faEllipsisV = faEllipsisV;
+
   defaultColDef: any = { resizable: true, filter: 'agSetColumnFilter' };
 
   userRow: any = [];
   sessions: ClientTable<any> = ClientTable.emptyTable();
   sessions_columnDefs: ColDef[] = [];
   sessions_rowData: any[] = [];
+  addresses: ClientTable<any> = ClientTable.emptyTable();
+  addresses_columnDefs: ColDef[] = [];
+  addresses_rowData: any[] = [];
 
   constructor(public apiService: YenotApiService) {}
 
@@ -42,9 +48,21 @@ export class UserSidebarComponent implements OnChanges {
     let payload = await this.apiService.get(`api/user/${userId}`);
 
     this.userRow = payload.namedTable('user').singleton();
-    this.sessions = payload.namedTable('sessions');
 
+    this.sessions = payload.namedTable('sessions');
     this.sessions_columnDefs = columnsAgGrid(this.sessions.columns);
     this.sessions_rowData = this.sessions.rows;
+
+    this.addresses = payload.namedTable('addresses');
+    this.addresses_columnDefs = columnsAgGrid(this.addresses.columns);
+    this.addresses_rowData = this.addresses.rows;
+  }
+
+  async onSendInvite() {
+    try {
+      await this.apiService.put(`api/user/${this.userRow.id}/send-invite`);
+    } catch (e: any) {
+      alert(e.message);
+    }
   }
 }

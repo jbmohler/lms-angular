@@ -1,0 +1,48 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+.head-props {
+  display: flex;
+  flex-direction: column;
+  flex: auto;
+}
+
+.hamb-menu {
+  float: right;
+  padding: 5px;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  right: 10px;
+  left: auto;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on
+* hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.hamb-menu:hover .dropdown-content {
+  display: block;
+}

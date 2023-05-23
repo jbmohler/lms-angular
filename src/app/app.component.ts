@@ -33,18 +33,27 @@ export class AppComponent implements OnInit {
   }
 
   async updateAuthStatus(value: any) {
-    this.authenticated = await this.apiService.isAuthenticated(false);
-    if (await this.apiService.accepting) {
-      this.authStatus = 'accepting';
-    } else if (this.authenticated) {
-      this.authStatus = 'yes';
-    } else {
+    console.log('testing');
+    try {
+      this.authenticated = await this.apiService.isAuthenticated(false);
+
+      console.log('testing', this.authenticated);
+      if (await this.apiService.accepting) {
+        this.authStatus = 'accepting';
+      } else if (this.authenticated) {
+        this.authStatus = 'yes';
+      } else {
+        this.authStatus = 'no';
+      }
+    } catch (e: any) {
+      console.log('testing', e);
+      this.authenticated = false;
       this.authStatus = 'no';
     }
   }
 
   async checkAuthenticated() {
-    this.authenticated = await this.apiService.isAuthenticated(true);
+    this.updateAuthStatus(null);
   }
 
   async onClickSubmit(data: any) {
