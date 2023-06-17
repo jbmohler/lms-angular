@@ -23,22 +23,23 @@
       <input formControlName="l_name" />
     </div>
     <div *ngIf="personaRow?.corporate_entity == 'false'">
-      <label class="label">First Name: </label
-      ><input formControlName="f_name" />
-      <label class="label">Last Name: </label><input formControlName="l_name" />
+      <label class="label" for="f_name">First Name: </label>
+      <input id="f_name" formControlName="f_name" />
+      <label for="l_name"> Last Name: </label>
+      <input id="l_name" formControlName="l_name" />
     </div>
     <div>
-      <label class="label">Organization: </label
-      ><input formControlName="organization" />
+      <label class="label" for="organization">Organization: </label
+      ><input id="organizataion" formControlName="organization" />
     </div>
 
     <div>
-      <label class="label">Memo:</label>
-      <textarea cols="40" rows="5" formControlName="memo"></textarea>
+      <label class="label" for="memo">Memo:</label>
+      <textarea id="memo" cols="40" rows="5" formControlName="memo"></textarea>
     </div>
 
     <div class="buttons">
-      <input type="button" (click)="onClickSave()" value="Save" />
+      <input type="submit" (click)="onClickSave()" value="Save" />
     </div>
   </form>
 </div>
