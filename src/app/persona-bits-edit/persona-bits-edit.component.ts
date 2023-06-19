@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { faClipboard, faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UntypedFormGroup, FormControl } from '@angular/forms';
 import {
@@ -13,9 +14,12 @@ import {
   styleUrls: ['./persona-bits-edit.component.css'],
 })
 export class PersonaBitsEditComponent implements OnInit {
+  faClipboard = faClipboard;
+  faRefresh = faRefresh;
   persona_id: string;
   bit_id: string | undefined = undefined;
   new: boolean = false;
+  isGenerating = false;
   bit_type: string;
 
   bitData: any = null;
@@ -24,6 +28,13 @@ export class PersonaBitsEditComponent implements OnInit {
     name: new FormControl(''),
     is_primary: new FormControl(''),
     memo: new FormControl(''),
+  });
+
+  passwordForm = new UntypedFormGroup({
+    password01: new FormControl(''),
+    password02: new FormControl(''),
+    password03: new FormControl(''),
+    password04: new FormControl(''),
   });
 
   constructor(
@@ -103,5 +114,56 @@ export class PersonaBitsEditComponent implements OnInit {
 
       this.dialogRef.close();
     } catch {}
+  }
+
+  async onClickGenerate() {
+    this.isGenerating = !this.isGenerating;
+
+    if (this.isGenerating) {
+      const passwords: any = {};
+
+      let get_password = async (mode: string, bits: number) => {
+        return (
+          await this.apiService.get('api/password/generate', {
+            query: { mode, bits },
+          })
+        ).keys['password'];
+      };
+
+      passwords.password01 = await get_password('pronounciable', 45);
+      passwords.password02 = await get_password('random', 45);
+      passwords.password03 = await get_password('words', 45);
+      passwords.password04 = await get_password('alphanumeric', 45);
+
+      this.passwordForm.patchValue(passwords);
+    }
+  }
+
+  copyString(val: string) {
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'fixed';
+    selBox.style.left = '0';
+    selBox.style.top = '0';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);
+  }
+
+  onCopyCandidate(index: number) {
+    const attr = `password0${index}`;
+
+    this.copyString(this.passwordForm.value[attr]);
+  }
+
+  onUpdatePassword(index: number) {
+    const attr = `password0${index}`;
+
+    alert(
+      'not implemented -- going to move currecct password on the left down to the memo and so forth'
+    );
   }
 }

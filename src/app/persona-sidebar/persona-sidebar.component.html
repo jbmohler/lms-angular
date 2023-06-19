@@ -113,7 +113,14 @@
           }}</a
           ><br />
           <span *ngIf="bit.bit_data.username || bit.bit_data.password">
-            {{ bit.bit_data.username }}<br />
+            <span
+              >{{ bit.bit_data.username }}
+              <fa-icon
+                [icon]="faClipboard"
+                *ngIf="bit.bit_data.username"
+                (click)="onUsernameCopy(bit)"
+              ></fa-icon></span
+            ><br />
             <a class="copy" (click)="onPasswordCopy(bit)">Copy Password</a>
             <div *ngIf="bit.bit_data.pw_next_reset_dt">
               Expires {{ bit.bit_data.pw_next_reset_dt }}

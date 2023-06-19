@@ -11,6 +11,7 @@ import {
   faTrashCan,
   faCirclePlus,
   faStar,
+  faClipboard,
   faArrowUp,
   faArrowDown,
   faUserPlus,
@@ -48,6 +49,7 @@ export class PersonaSidebarComponent implements OnChanges {
   faTrashCan = faTrashCan;
   faCirclePlus = faCirclePlus;
   faStar = faStar;
+  faClipboard = faClipboard;
   faArrowUp = faArrowUp;
   faArrowDown = faArrowDown;
   faUserPlus = faUserPlus;
@@ -196,6 +198,10 @@ export class PersonaSidebarComponent implements OnChanges {
     selBox.select();
     document.execCommand('copy');
     document.body.removeChild(selBox);
+  }
+
+  onUsernameCopy(bit: any) {
+    this.copyString(bit.bit_data.username);
   }
 
   onPasswordCopy(bit: any) {
