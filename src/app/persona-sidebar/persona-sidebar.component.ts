@@ -21,7 +21,7 @@ import {
   YenotApiService,
   YenotPayload,
   ClientTable,
-} from '../yenot-api.service';
+} from '@yenot/yenot-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonaEditComponent } from '../persona-edit/persona-edit.component';
 import { PersonaShareComponent } from '../persona-share/persona-share.component';

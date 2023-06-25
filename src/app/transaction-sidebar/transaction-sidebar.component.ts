@@ -5,7 +5,7 @@ import {
   YenotPayload,
   ClientTable,
   columnsAgGrid,
-} from '../yenot-api.service';
+} from '@yenot/yenot-api.service';
 
 @Component({
   selector: 'app-transaction-sidebar',

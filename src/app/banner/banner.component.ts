@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { YenotApiService } from '../yenot-api.service';
+import { YenotApiService } from '@yenot/yenot-api.service';
 
 @Component({
   selector: 'app-banner',

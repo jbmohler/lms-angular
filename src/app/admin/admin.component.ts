@@ -12,7 +12,7 @@ import {
   YenotPayload,
   ClientTable,
   columnsAgGrid,
-} from '../yenot-api.service';
+} from '@yenot/yenot-api.service';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({

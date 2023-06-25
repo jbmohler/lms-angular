@@ -12,7 +12,7 @@ import {
   YenotPayload,
   ClientTable,
   columnsAgGrid,
-} from '../yenot-api.service';
+} from '@yenot/yenot-api.service';
 import { ProfileAddressEditComponent } from '../profile-address-edit/profile-address-edit.component';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { YenotApiService } from '../yenot-api.service';
+import { YenotApiService } from '@yenot/yenot-api.service';
 
 @Component({
   selector: 'app-tabnav',

@@ -23,6 +23,9 @@
       "es2021",
       "dom"
     ],
+    "paths": {
+        "@yenot/*": ["src/app/*"]
+    },
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {

@@ -5,7 +5,7 @@ import {
   YenotPayload,
   ClientTable,
   columnsAgGrid,
-} from '../yenot-api.service';
+} from '@yenot/yenot-api.service';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 @Component({

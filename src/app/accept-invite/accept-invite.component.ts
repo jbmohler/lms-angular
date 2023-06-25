@@ -5,7 +5,7 @@ import {
   YenotApiService,
   YenotPayload,
   ClientTable,
-} from '../yenot-api.service';
+} from '@yenot/yenot-api.service';
 
 @Component({
   selector: 'app-accept-invite',

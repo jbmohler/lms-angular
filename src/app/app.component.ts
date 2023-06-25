@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { YenotApiService } from './yenot-api.service';
+import { YenotApiService } from '@yenot/yenot-api.service';
 
 type AuthStatus = 'unknown' | 'yes' | 'no' | 'accepting';
 
