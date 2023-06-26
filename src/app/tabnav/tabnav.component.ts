@@ -23,7 +23,7 @@ export class TabnavComponent implements OnInit {
   profile_active: boolean = false;
   technical_active: boolean = false;
 
-  toggled: string = '';
+  toggled = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -77,11 +77,6 @@ export class TabnavComponent implements OnInit {
   ngOnInit(): void {}
 
   toggleShowAll() {
-    if (this.toggled) {
-      this.toggled = '';
-    } else {
-      this.toggled = 'toggled ';
-    }
-    console.log('>> ' + this.toggled);
+    this.toggled = !this.toggled;
   }
 }

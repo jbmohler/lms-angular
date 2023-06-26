@@ -1,38 +1,44 @@
-<div [className]="toggled + 'tab_div'" id="the_tab_div">
-  <div>
-    <a href="/" [className]="root_active ? 'active' : ''">Dashboard</a>
-  </div>
-  <div *ngIf="contact_visible">
-    <a href="/contacts" [className]="contact_active ? 'active' : ''"
-      >Contacts</a
-    >
-  </div>
-  <div *ngIf="databit_visible">
-    <a href="/databits" [className]="databit_active ? 'active' : ''"
-      >Contacts</a
-    >
-  </div>
-  <div *ngIf="finance_visible">
-    <a href="/finances" [className]="finance_active ? 'active' : ''"
-      >Finances</a
-    >
-  </div>
-  <div *ngIf="reports_visible">
-    <a href="/reports" [className]="reports_active ? 'active' : ''">Reports</a>
-  </div>
-  <div *ngIf="admin_visible">
-    <a href="/admin" [className]="admin_active ? 'active' : ''">Admin</a>
-  </div>
-  <div *ngIf="profile_active">
-    <a href="/lms/user-profile" [className]="profile_active ? 'active' : ''"
-      >Profile</a
-    >
-  </div>
-  <div *ngIf="technical_active">
-    <a href="/lms/technical" [className]="technical_active ? 'active' : ''"
-      >Technical</a
-    >
-  </div>
+<div [ngClass]="{ tab_div: true, toggled: toggled }">
+  <a href="/" [ngClass]="{ active: root_active }">Dashboard</a>
+  <a
+    *ngIf="contact_visible"
+    href="/contacts"
+    [ngClass]="{ active: contact_active }"
+    >Contacts</a
+  >
+  <a
+    *ngIf="databit_visible"
+    href="/databits"
+    [ngClass]="{ active: databit_active }"
+    >Contacts</a
+  >
+  <a
+    *ngIf="finance_visible"
+    href="/finances"
+    [ngClass]="{ active: finance_active }"
+    >Finances</a
+  >
+  <a
+    *ngIf="reports_visible"
+    href="/reports"
+    [ngClass]="{ active: reports_active }"
+    >Reports</a
+  >
+  <a *ngIf="admin_visible" href="/admin" [ngClass]="{ active: admin_active }"
+    >Admin</a
+  >
+  <a
+    *ngIf="profile_active"
+    href="/lms/user-profile"
+    [ngClass]="{ active: profile_active }"
+    >Profile</a
+  >
+  <a
+    *ngIf="technical_active"
+    href="/lms/technical"
+    [ngClass]="{ active: technical_active }"
+    >Technical</a
+  >
   <a href="javascript:void(0);" class="icon" (click)="toggleShowAll()">
     <tool-icon-span name="hamburger" />
   </a>
