@@ -7,17 +7,6 @@ import {
   EventEmitter,
 } from '@angular/core';
 import {
-  faPenToSquare,
-  faTrashCan,
-  faCirclePlus,
-  faStar,
-  faClipboard,
-  faArrowUp,
-  faArrowDown,
-  faUserPlus,
-  faUserCheck,
-} from '@fortawesome/free-solid-svg-icons';
-import {
   YenotApiService,
   YenotPayload,
   ClientTable,
@@ -44,16 +33,6 @@ export class PersonaSidebarComponent implements OnChanges {
   @Input() personaId: string | null = null;
 
   @Output() personaChange: EventEmitter<any> = new EventEmitter<any>();
-
-  faPenToSquare = faPenToSquare;
-  faTrashCan = faTrashCan;
-  faCirclePlus = faCirclePlus;
-  faStar = faStar;
-  faClipboard = faClipboard;
-  faArrowUp = faArrowUp;
-  faArrowDown = faArrowDown;
-  faUserPlus = faUserPlus;
-  faUserCheck = faUserCheck;
 
   personaRow: any = null;
   bits: ClientTable<any> = ClientTable.emptyTable();

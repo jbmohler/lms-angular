@@ -1,19 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
 import { ColDef } from 'ag-grid-community';
-import {
-  faPenToSquare,
-  faTrashCan,
-  faCirclePlus,
-} from '@fortawesome/free-solid-svg-icons';
 import {
   YenotApiService,
   YenotPayload,
   ClientTable,
   columnsAgGrid,
 } from '@yenot/yenot-api.service';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin',
@@ -21,10 +16,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./admin.component.css'],
 })
 export class AdminComponent implements OnInit {
-  faPenToSquare = faPenToSquare;
-  faTrashCan = faTrashCan;
-  faCirclePlus = faCirclePlus;
-
   fragment: string = '';
 
   previewUserId: string | null = null;

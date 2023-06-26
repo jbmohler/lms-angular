@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { faClipboard, faRefresh } from '@fortawesome/free-solid-svg-icons';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UntypedFormGroup, FormControl } from '@angular/forms';
 import {
@@ -14,8 +13,6 @@ import {
   styleUrls: ['./persona-bits-edit.component.css'],
 })
 export class PersonaBitsEditComponent implements OnInit {
-  faClipboard = faClipboard;
-  faRefresh = faRefresh;
   persona_id: string;
   bit_id: string | undefined = undefined;
   new: boolean = false;

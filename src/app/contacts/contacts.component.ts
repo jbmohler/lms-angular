@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
-import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { ColDef } from 'ag-grid-community';
 import {
   YenotApiService,
@@ -18,8 +17,6 @@ import { PersonaEditComponent } from '../persona-edit/persona-edit.component';
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
-  faCirclePlus = faCirclePlus;
-
   fragment: string = '';
 
   previewPersonaId: string | null = null;

@@ -6,7 +6,6 @@ import {
   ClientTable,
   columnsAgGrid,
 } from '@yenot/yenot-api.service';
-import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-sidebar',
@@ -15,8 +14,6 @@ import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 })
 export class UserSidebarComponent implements OnChanges {
   @Input() userId: string | null = null;
-
-  faEllipsisV = faEllipsisV;
 
   defaultColDef: any = { resizable: true, filter: 'agSetColumnFilter' };
 

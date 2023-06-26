@@ -24,7 +24,8 @@
       "dom"
     ],
     "paths": {
-        "@yenot/*": ["src/app/*"]
+        "@yenot/*": ["src/app/*"],
+        "@uitools/*": ["src/uitools/*"]
     },
     "useDefineForClassFields": false
   },

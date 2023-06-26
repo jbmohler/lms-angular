@@ -14,16 +14,16 @@
   <h3>Contact Information</h3>
 
   <div class="icon-buttons" (click)="onNewEmail()">
-    <fa-icon [icon]="faCirclePlus"></fa-icon>New e-mail
+    <tool-icon-span name="add" />New e-mail
   </div>
 
   <div class="icon-buttons" (click)="onNewPhone()">
-    <fa-icon [icon]="faCirclePlus"></fa-icon>New phone number
+    <tool-icon-span name="add" />New phone number
   </div>
 
   <div *ngFor="let addr of addresses.rows">
-    <span class="label">Address: </span>{{ addr.address }}
-    <span *ngIf="addr.is_primary"><fa-icon [icon]="faStar"></fa-icon></span>
+    <span class="label">Address: </span>{{ addr.address }}&nbsp;
+    <tool-icon-span *ngIf="addr.is_primary" name="primary-marker" />
   </div>
 
   <h3>Security</h3>

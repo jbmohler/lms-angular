@@ -1,19 +1,18 @@
 <div>
   <div class="blob">
     <b>Name: </b>{{ personaRow?.entity_name }}&nbsp;
-    <fa-icon
+    <tool-icon-span
       class="icon-buttons"
       *ngIf="isEditable"
-      [icon]="faPenToSquare"
+      name="edit-pencil"
       (click)="onEditPersona(personaRow)"
-    ></fa-icon
-    >&nbsp;
-    <fa-icon
+    />&nbsp;
+    <tool-icon-span
       class="icon-buttons"
       *ngIf="isEditable"
-      [icon]="faTrashCan"
+      name="delete"
       (click)="onDeletePersona(personaRow)"
-    ></fa-icon>
+    />
 
     <div *ngIf="personaRow?.organization" class="raw-multiline">
       {{ personaRow?.organization }}
@@ -38,65 +37,66 @@
       *ngIf="isEditable"
       (click)="onSelectShare(personaRow)"
     >
-      <fa-icon [icon]="faUserPlus"></fa-icon>Share
+      <tool-icon-span name="add-person" />Share
     </div>
     <div
       class="icon-buttons"
       *ngIf="isEditable"
       (click)="onChangeOwner(personaRow)"
     >
-      <fa-icon [icon]="faUserCheck"></fa-icon>Change Owner
+      <tool-icon-span name="send-person" />Change Owner
     </div>
   </div>
 
   <div class="bit_top_commands" *ngIf="isEditable">
     <div class="icon-buttons" (click)="onAddBit('urls')">
-      <fa-icon [icon]="faCirclePlus"></fa-icon>Web/Login
+      <tool-icon-span name="add" />Web/Login
     </div>
     <div class="icon-buttons" (click)="onAddBit('email_addresses')">
-      <fa-icon [icon]="faCirclePlus"></fa-icon>e-Mail
+      <tool-icon-span name="add" />e-Mail
     </div>
     <div class="icon-buttons" (click)="onAddBit('phone_numbers')">
-      <fa-icon [icon]="faCirclePlus"></fa-icon>Phone
+      <tool-icon-span name="add" />Phone
     </div>
     <div class="icon-buttons" (click)="onAddBit('street_addresses')">
-      <fa-icon [icon]="faCirclePlus"></fa-icon>Postal Address
+      <tool-icon-span name="add" />Postal Address
     </div>
   </div>
 
   <div class="bit blob" *ngFor="let bit of bits.rows">
     <div style="display: flex; flex-direction: column; gap: 0.25em">
-      <fa-icon
+      <tool-icon-span
         class="icon-buttons"
         *ngIf="isEditable"
-        [icon]="faPenToSquare"
+        name="edit-pencil"
         (click)="onEditBit(bit)"
-      ></fa-icon>
-      <fa-icon
+      />
+      <tool-icon-span
         class="icon-buttons"
         *ngIf="isEditable"
-        [icon]="faTrashCan"
+        name="delete"
         (click)="onDeleteBit(bit)"
-      ></fa-icon>
+      />
     </div>
     <div style="display: flex; flex-direction: column; gap: 0.25em">
-      <fa-icon
+      <tool-icon-span
         class="icon-buttons"
         *ngIf="bit.bit_above && isEditable"
-        [icon]="faArrowUp"
+        name="arrow-up"
         (click)="onReorderBitUp(bit)"
-      ></fa-icon>
-      <fa-icon
+      />
+      <tool-icon-span
         class="icon-buttons"
         *ngIf="bit.bit_below && isEditable"
-        [icon]="faArrowDown"
+        name="arrow-down"
         (click)="onReorderBitDown(bit)"
-      ></fa-icon>
+      />
     </div>
     <div class="bit_data">
-      <span *ngIf="bit.name || bit.is_primary"
-        >{{ bit.name }}<fa-icon *ngIf="bit.is_primary" [icon]="faStar"></fa-icon
-      ></span>
+      <span *ngIf="bit.name || bit.is_primary">
+        {{ bit.name }}
+        <tool-icon-span *ngIf="bit.is_primary" name="primary-marker" />
+      </span>
       <div [ngSwitch]="bit.bit_type">
         <span *ngSwitchCase="'email_addresses'">
           {{ bit.bit_data.email }}
@@ -113,13 +113,13 @@
           }}</a
           ><br />
           <span *ngIf="bit.bit_data.username || bit.bit_data.password">
-            <span
-              >{{ bit.bit_data.username }}
-              <fa-icon
-                [icon]="faClipboard"
+            <span>
+              {{ bit.bit_data.username }}&nbsp;
+              <tool-icon-span
+                name="copy"
                 *ngIf="bit.bit_data.username"
                 (click)="onUsernameCopy(bit)"
-              ></fa-icon></span
+              /> </span
             ><br />
             <a class="copy" (click)="onPasswordCopy(bit)">Copy Password</a>
             <div *ngIf="bit.bit_data.pw_next_reset_dt">

@@ -3,11 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ColDef } from 'ag-grid-community';
 import {
-  faPenToSquare,
-  faTrashCan,
-  faCirclePlus,
-} from '@fortawesome/free-solid-svg-icons';
-import {
   YenotApiService,
   YenotPayload,
   ClientTable,
@@ -21,10 +16,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./finances.component.css'],
 })
 export class FinancesComponent implements OnInit {
-  faPenToSquare = faPenToSquare;
-  faTrashCan = faTrashCan;
-  faCirclePlus = faCirclePlus;
-
   fragment: string = '';
 
   previewTransactionId: string | null = null;

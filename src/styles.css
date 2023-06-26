@@ -19,7 +19,7 @@ body {
   cursor: pointer;
 }
 
-.icon-buttons > fa-icon {
+.icon-buttons > tool-icon-span {
   margin-right: 0.3em;
 }
 

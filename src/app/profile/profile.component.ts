@@ -2,12 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ColDef } from 'ag-grid-community';
 import {
-  faPenToSquare,
-  faTrashCan,
-  faCirclePlus,
-  faStar,
-} from '@fortawesome/free-solid-svg-icons';
-import {
   YenotApiService,
   YenotPayload,
   ClientTable,
@@ -25,11 +19,6 @@ export class ProfileComponent implements OnInit {
   addresses: ClientTable<any> = ClientTable.emptyTable();
   roles: ClientTable<any> = ClientTable.emptyTable();
   devicetokens: ClientTable<any> = ClientTable.emptyTable();
-
-  faPenToSquare = faPenToSquare;
-  faTrashCan = faTrashCan;
-  faCirclePlus = faCirclePlus;
-  faStar = faStar;
 
   columnDefs: ColDef[] = [];
   rowData: any[] = [];
