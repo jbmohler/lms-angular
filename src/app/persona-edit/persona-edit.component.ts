@@ -83,4 +83,8 @@ export class PersonaEditComponent implements OnInit {
         : 'false';
     }
   }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
 }

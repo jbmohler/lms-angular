@@ -163,4 +163,8 @@ export class PersonaBitsEditComponent implements OnInit {
       'not implemented -- going to move currecct password on the left down to the memo and so forth'
     );
   }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
 }

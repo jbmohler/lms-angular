@@ -100,4 +100,8 @@ export class PersonaShareComponent implements OnInit {
       this.dialogRef.close();
     }
   }
+
+  onCancel() {
+    this.dialogRef.close();
+  }
 }

@@ -25,7 +25,10 @@
 </ng-template>
 
 <div class="dialog">
-  <h1>Edit Bit</h1>
+  <h1>
+    <span>Edit Bit</span>
+    <tool-icon-span name="close" (click)="onCancel()" />
+  </h1>
 
   <form [formGroup]="bitForm">
     <div style="display: flex; flex-direction: row">

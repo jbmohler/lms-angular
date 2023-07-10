@@ -9,7 +9,7 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: sans-serif;
 }
 
 .icon-buttons {
@@ -47,9 +47,14 @@ body {
   margin-bottom: 0.6em;
   background-color: #4f7942;
   color: white;
+
+  display: flex;
+  justify-content: space-between;
 }
 
 .dialog > form > .buttons {
+  margin: 8px;
+  gap: 5px;
   display: flex;
   justify-content: flex-end;
 }

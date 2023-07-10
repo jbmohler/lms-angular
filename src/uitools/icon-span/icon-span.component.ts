@@ -35,6 +35,7 @@ export class IconSpanComponent implements OnChanges {
     'primary-marker': fas['faStar'],
     'arrow-down': fas['faArrowDown'],
     'arrow-up': fas['faArrowUp'],
+    close: fas['faClose'],
   };
 
   ngOnChanges(changes: SimpleChanges) {

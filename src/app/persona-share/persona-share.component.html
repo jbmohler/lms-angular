@@ -1,6 +1,9 @@
 <div class="dialog">
-  <h1 *ngIf="reown">Give Contact Ownership</h1>
-  <h1 *ngIf="reshare">Share Contact</h1>
+  <h1>
+    <span *ngIf="reown">Give Contact Ownership</span>
+    <span *ngIf="reshare">Share Contact</span>
+    <tool-icon-span name="close" (click)="onCancel()" />
+  </h1>
 
   <form class="form">
     <div *ngIf="reown">
