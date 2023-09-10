@@ -23,8 +23,7 @@ import { PersonaEditComponent } from './persona-edit/persona-edit.component';
 import { PersonaShareComponent } from './persona-share/persona-share.component';
 import { UserSidebarComponent } from './user-sidebar/user-sidebar.component';
 import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
-import { ProfileAddressEditComponent } from './profile-address-edit/profile-address-edit.component';
-import { IconSpanComponent } from '@uitools/icon-span/icon-span.component';
+import { ToolsModule } from '@uitools/tools.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +43,6 @@ import { IconSpanComponent } from '@uitools/icon-span/icon-span.component';
     PersonaShareComponent,
     UserSidebarComponent,
     AcceptInviteComponent,
-    ProfileAddressEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +53,7 @@ import { IconSpanComponent } from '@uitools/icon-span/icon-span.component';
     MatDialogModule,
     MatProgressSpinnerModule,
     AppRoutingModule,
-    IconSpanComponent,
+    ToolsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -7,7 +7,8 @@ import {
   ClientTable,
   columnsAgGrid,
 } from '@yenot/yenot-api.service';
-import { ProfileAddressEditComponent } from '../profile-address-edit/profile-address-edit.component';
+import { AddressEditComponent } from './address-edit/address-edit.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @Component({
   selector: 'app-profile',
@@ -42,10 +43,10 @@ export class ProfileComponent implements OnInit {
   }
 
   _onNewAddress(type: string) {
-    let dialogRef = this.dialog.open(ProfileAddressEditComponent, {
+    let dialogRef = this.dialog.open(AddressEditComponent, {
       panelClass: 'form-edit-dialog',
       width: '100vw',
-      maxWidth: '650px',
+      maxWidth: '300px',
       data: { new: true, type: type },
     });
 
@@ -60,5 +61,18 @@ export class ProfileComponent implements OnInit {
 
   onNewPhone() {
     this._onNewAddress('phone');
+  }
+
+  onChangePassword() {
+    let dialogRef = this.dialog.open(ChangePasswordComponent, {
+      panelClass: 'form-edit-dialog',
+      width: '100vw',
+      maxWidth: '300px',
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      this.loadProfile();
+    });
   }
 }
